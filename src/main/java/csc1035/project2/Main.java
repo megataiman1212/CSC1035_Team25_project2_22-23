@@ -15,15 +15,14 @@ public class Main {
                 Topic.PROGRAMMING,
                 "alpha",
                 "bravo", "charlie", "delta");
-        mcq.execute();
-
-        System.out.println("-".repeat(25));
 
         ShortResponseQuestion srq = new ShortResponseQuestion(
                 "Type 'alpha' (case insensitive) for correct, anything else for incorrect",
                 Topic.MATHS,
                 Pattern.compile("^alpha$", Pattern.CASE_INSENSITIVE)
         );
-        srq.execute();
+
+        Quiz q = new Quiz(srq, srq, mcq, mcq);
+        q.execute();
     }
 }
