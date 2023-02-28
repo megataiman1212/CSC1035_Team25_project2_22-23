@@ -15,6 +15,7 @@ public class Quiz {
 
     public void execute() {
         Collections.shuffle(questions);
+        int correct = 0;
 
         String title = "Quiz - " + questions.size() + " questions";
         System.out.println(title);
@@ -26,8 +27,17 @@ public class Quiz {
             String message = "Question " + (i+1);
             System.out.println(message);
             System.out.println("-".repeat(message.length()));
-            question.execute();
+
+            if(question.execute()) {
+                System.out.println("Correct!");
+                correct++;
+            } else {
+                System.out.println("Wrong");
+            }
+
             System.out.println();
         }
+
+        System.out.printf("You got %s/%s right!%n", correct, questions.size());
     }
 }

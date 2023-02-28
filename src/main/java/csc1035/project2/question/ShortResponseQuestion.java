@@ -12,7 +12,7 @@ public class ShortResponseQuestion extends Question {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         System.out.println(this.question);
 
         // @TODO Refactor this into an `IO` class
@@ -20,11 +20,6 @@ public class ShortResponseQuestion extends Question {
         Scanner s = new Scanner(System.in);
 
         String answer = s.nextLine().trim();
-        if(pattern.matcher(answer).matches()) {
-            System.out.println("Correct :)");
-        } else {
-            System.out.println("Wrong :(");
-        }
-
+        return pattern.matcher(answer).matches();
     }
 }

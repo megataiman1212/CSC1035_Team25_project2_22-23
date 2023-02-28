@@ -14,7 +14,7 @@ public class MultipleChoiceQuestion extends Question {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         System.out.println(this.question);
 
         // @TODO Refactor this into an `IO` class
@@ -33,10 +33,6 @@ public class MultipleChoiceQuestion extends Question {
         // @TODO This will crash if a non integer value is entered!
         int answer = s.nextInt();
 
-        if(allAnswers.get(answer - 1).equals(correctAnswer)) {
-            System.out.println("Correct :)");
-        } else {
-            System.out.println("Wrong :(");
-        }
+        return allAnswers.get(answer - 1).equals(correctAnswer);
     }
 }

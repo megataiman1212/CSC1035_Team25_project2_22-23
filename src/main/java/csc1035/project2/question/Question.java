@@ -13,6 +13,6 @@ public abstract class Question {
         return question;
     }
 
-    public abstract void execute();
+    public abstract boolean execute();
 }
 
