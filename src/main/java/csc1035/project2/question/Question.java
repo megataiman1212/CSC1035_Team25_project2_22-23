@@ -9,6 +9,10 @@ public abstract class Question {
         this.topic = topic;
     }
 
-    abstract void answer();
+    public String getQuestion() {
+        return question;
+    }
+
+    public abstract boolean execute();
 }
 
