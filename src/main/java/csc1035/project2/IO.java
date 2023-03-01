@@ -54,4 +54,27 @@ public class IO {
         System.out.println("4 - Sample 4");
         System.out.println("========================================");
     }
+
+    // =================================================================
+    // ================== Manipulating Questions =======================
+    // =================================================================
+
+    public static void createQuestion(){
+
+    }
+
+    public static void readQuestion(){
+
+    }
+
+    public static void updateQuestion(){
+
+    }
+
+    public static void deleteQuestion(){
+
+    }
+
+
+    // =================================================================
 }
