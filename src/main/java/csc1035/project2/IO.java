@@ -1,5 +1,7 @@
 package csc1035.project2;
 
-public class IO {
+import java.util.Scanner;
 
+public class IO {
+    public static final Scanner scanner = new Scanner(System.in);
 }

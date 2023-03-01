@@ -1,5 +1,7 @@
 package csc1035.project2.question;
 
+import csc1035.project2.IO;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -13,13 +15,19 @@ public class ShortResponseQuestion extends Question {
 
     @Override
     public boolean execute() {
-        System.out.println(this.question);
+        showPrompt();
+        String input = getInput();
 
-        // @TODO Refactor this into an `IO` class
+        return pattern.matcher(input).matches();
+    }
 
-        Scanner s = new Scanner(System.in);
+    public void showPrompt() {
+        System.out.println(question);
+    }
 
-        String answer = s.nextLine().trim();
-        return pattern.matcher(answer).matches();
+    public String getInput() {
+        System.out.print("Enter your answer... ");
+
+        return IO.scanner.nextLine().trim();
     }
 }

@@ -1,5 +1,7 @@
 package csc1035.project2.question;
 
+import csc1035.project2.IO;
+
 import java.util.*;
 
 public class MultipleChoiceQuestion extends Question {
@@ -15,24 +17,38 @@ public class MultipleChoiceQuestion extends Question {
 
     @Override
     public boolean execute() {
-        System.out.println(this.question);
-
-        // @TODO Refactor this into an `IO` class
-
         ArrayList<String> allAnswers = new ArrayList<>(List.of(wrongAnswers));
         allAnswers.add(correctAnswer);
         Collections.shuffle(allAnswers);
 
+        showPrompt(allAnswers);
+        int answer = getInput(allAnswers.size());
+
+        return allAnswers.get(answer - 1).equals(correctAnswer);
+    }
+
+    public void showPrompt(ArrayList<String> allAnswers) {
         for (int i = 0; i < allAnswers.size(); i++) {
             System.out.printf("\t%s - %s%n", i + 1, allAnswers.get(i));
         }
+    }
 
+    public int getInput(int max) {
         System.out.print("Enter your choice... ");
-        Scanner s = new Scanner(System.in);
 
-        // @TODO This will crash if a non integer value is entered!
-        int answer = s.nextInt();
+        int answer;
 
-        return allAnswers.get(answer - 1).equals(correctAnswer);
+        while (true) {
+            String line = IO.scanner.nextLine().trim();
+            try {
+                answer = Integer.parseInt(line);
+                if (answer >= 1 && answer <= max) break;
+            } catch (Exception ignored) {
+            }
+
+            System.out.print("Invalid choice, try again... ");
+        }
+
+        return answer;
     }
 }

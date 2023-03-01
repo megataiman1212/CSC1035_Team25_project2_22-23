@@ -13,6 +13,11 @@ public abstract class Question {
         return question;
     }
 
+    @Override
+    public String toString() {
+        return question + '\n' + "-".repeat(question.length());
+    }
+
     public abstract boolean execute();
 }
 
