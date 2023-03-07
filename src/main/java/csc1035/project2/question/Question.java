@@ -1,8 +1,12 @@
 package csc1035.project2.question;
 
 public abstract class Question {
+
+    // @todo add hibernate notation (@id or @column etc..)
     final protected String question;
     final protected Topic topic;
+
+    // @todo add a no arg/default constructor
 
     public Question(String question, Topic topic) {
         this.question = question;
