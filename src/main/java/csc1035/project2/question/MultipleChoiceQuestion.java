@@ -28,6 +28,8 @@ public class MultipleChoiceQuestion extends Question {
     }
 
     public void showPrompt(ArrayList<String> allAnswers) {
+        System.out.println(question);
+
         for (int i = 0; i < allAnswers.size(); i++) {
             System.out.printf("\t%s - %s%n", i + 1, allAnswers.get(i));
         }
