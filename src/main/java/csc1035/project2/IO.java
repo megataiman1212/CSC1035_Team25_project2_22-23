@@ -6,6 +6,11 @@ import java.util.Scanner;
 public class IO {
     public static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Main method to provide the main run environment for the entire package.
+     * Allow the user to select the functionality they would like to use.
+     * @param args
+     */
     public static void main(String[] args) {
 
         // Begin main IO route
