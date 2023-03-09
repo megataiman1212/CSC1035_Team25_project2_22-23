@@ -178,8 +178,20 @@ public class IO {
     }
     public static void createQuestion(){
 
-        Question question =
-        Quiz.addQuestion(question)
+        // Allow user input for the quizName
+        System.out.println("Enter the name of the quiz : ");
+        String quizName = scanner.nextLine().toLowerCase();
+
+        // Assigns the quiz variable with the quiz found by the searchQuizByName
+        Quiz quiz = QuizManager.searchQuizByName(quizName); // @todo add a method to return a quiz based on the name of the quiz
+
+        // If there is no quiz found, return
+        if (quiz == null) {
+            return;
+        }
+
+
+        // @todo Quiz.addQuestion(question);
     }
 
     public static void readQuestion(){
