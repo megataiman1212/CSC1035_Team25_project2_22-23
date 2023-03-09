@@ -9,7 +9,7 @@ public class QuizManager {
     private ArrayList<Quiz> quizArrayList;
 
     /**
-     * Constructor for the AuctionHouseManager.Reporting class that creates a list of auctionHouses
+     * Constructor for the QuizManager class that creates a list of quizzes
      */
     public QuizManager(){
         quizArrayList = new ArrayList<>();
