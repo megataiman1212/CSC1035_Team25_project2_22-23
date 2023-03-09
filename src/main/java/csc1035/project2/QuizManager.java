@@ -19,9 +19,8 @@ public class QuizManager {
      * Method to add a quiz to the list of quizArrayList
      * @param quiz the quiz being added to the quizArrayList
      */
-    public void addAuctionHouse(Quiz quiz){
+    public void addQuiz(Quiz quiz){
         quizArrayList.add(quiz);
     }
-
 
 }
