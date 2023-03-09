@@ -40,4 +40,12 @@ public class Quiz {
 
         System.out.printf("You got %s/%s right!%n", correct, questions.size());
     }
+
+    /**
+     * Adds a question object to the list of questions for the quiz
+     * @param question the question to be added to the quiz
+     */
+    public void addQuestion(Question question){
+        questions.add(question);
+    }
 }
