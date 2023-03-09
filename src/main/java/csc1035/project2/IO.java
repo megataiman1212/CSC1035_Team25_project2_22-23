@@ -59,14 +59,78 @@ public class IO {
      */
     public static void consoleInterface(){
         System.out.println("========================================");
-        System.out.println("Quiz Options");
+        System.out.println("Program Options");
         System.out.println("----------------");
-        System.out.println("1 - Create, Read, Update or delete a question");
-        System.out.println("2 - Sample 2");
+        System.out.println("1 - Create, Read, Update or delete a quiz");
+        System.out.println("2 - Create, Read, Update or delete a question");
         System.out.println("3 - Sample 3");
         System.out.println("4 - Sample 4");
         System.out.println("========================================");
     }
+    // =================================================================
+    // =================== Manipulating Quizzes ========================
+    // =================================================================
+
+    /**
+     * Static method that allows the user to select the program option
+     * they would like to complete
+     */
+    public static void manipulateQuizData(){
+
+        System.out.println("========================================");
+        System.out.println("Chose Quiz Option");
+        System.out.println("----------------");
+        System.out.println("1 - Create Quiz");
+        System.out.println("2 - Read Quiz");
+        System.out.println("3 - Edit/Update Quiz");
+        System.out.println("4 - Delete Quiz");
+        System.out.println("========================================");
+
+        // Brings choice into scope
+        int choice = 0;
+        try{
+            choice = scanner.nextInt();
+        }
+        catch (InputMismatchException exception){
+            System.out.println("Data entered not an int");
+        }
+
+        switch (choice){
+            case 1:
+                System.out.println("Create Quiz: ");
+                createQuiz();
+                System.exit(0);
+            case 2:
+                System.out.println("Read Quiz : ");
+                readQuiz();
+                System.exit(0);
+            case 3:
+                System.out.println("Edit/Update Quiz : ");
+                updateQuiz();
+                System.exit(0);
+            case 4:
+                System.out.println("Delete Quiz : ");
+                deleteQuiz();
+                System.exit(0);
+        }
+    }
+    public static void createQuiz(){
+
+    }
+
+    public static void readQuiz(){
+
+    }
+
+    public static void updateQuiz(){
+
+    }
+
+    public static void deleteQuiz(){
+
+    }
+
+
 
     // =================================================================
     // ================== Manipulating Questions =======================
@@ -78,6 +142,15 @@ public class IO {
      * they would like to complete
      */
     public static void manipulateQuestionData(){
+
+        System.out.println("========================================");
+        System.out.println("Chose Question Option");
+        System.out.println("----------------");
+        System.out.println("1 - Create Question");
+        System.out.println("2 - Read Question");
+        System.out.println("3 - Edit/Update Question");
+        System.out.println("4 - Delete Question");
+        System.out.println("========================================");
 
         // Brings choice into scope
         int choice = 0;
@@ -91,32 +164,22 @@ public class IO {
         switch (choice){
             case 1:
                 System.out.println("Create Question : ");
-
                 createQuestion();
-
-                System.exit(0);
             case 2:
                 System.out.println("Read Question : ");
-
                 readQuestion();
-
-                System.exit(0);
             case 3:
                 System.out.println("Edit/Update Question : ");
-
                 updateQuestion();
-
-                System.exit(0);
             case 4:
                 System.out.println("Delete Question : ");
-
                 deleteQuestion();
-
-                System.exit(0);
         }
     }
     public static void createQuestion(){
 
+        Question question =
+        Quiz.addQuestion(question)
     }
 
     public static void readQuestion(){
