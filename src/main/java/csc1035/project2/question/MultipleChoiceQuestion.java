@@ -2,55 +2,54 @@ package csc1035.project2.question;
 
 import csc1035.project2.IO;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@PrimaryKeyJoinColumn
 public class MultipleChoiceQuestion extends Question {
-    final String[] wrongAnswers;
-    final String correctAnswer;
-
+    @ElementCollection
+    protected Collection<String> wrongAnswers;
+    protected String correctAnswer;
 
     public MultipleChoiceQuestion(String question, Topic topic, String correctAnswer, String... wrongAnswers) {
         super(question, topic);
         this.correctAnswer = correctAnswer;
-        this.wrongAnswers = wrongAnswers;
+        this.wrongAnswers = List.of(wrongAnswers);
     }
 
-    @Override
+    public MultipleChoiceQuestion() {
+    }
+
     public boolean execute() {
-        ArrayList<String> allAnswers = new ArrayList<>(List.of(wrongAnswers));
+        // Set up answers
+        ArrayList<String> allAnswers = new ArrayList<>(wrongAnswers);
         allAnswers.add(correctAnswer);
         Collections.shuffle(allAnswers);
 
-        showPrompt(allAnswers);
-        int answer = getInput(allAnswers.size());
-
-        return allAnswers.get(answer - 1).equals(correctAnswer);
-    }
-
-    public void showPrompt(ArrayList<String> allAnswers) {
+        // Print question to console
         System.out.println(question);
 
+        // Print answers to console
         for (int i = 0; i < allAnswers.size(); i++) {
             System.out.printf("\t%s - %s%n", i + 1, allAnswers.get(i));
         }
-    }
 
-    public int getInput(int max) {
+        // Get user input
         System.out.print("Enter your choice... ");
-
         int answer;
-
         while (true) {
             String line = IO.scanner.nextLine().trim();
             try {
                 answer = Integer.parseInt(line);
-                if (answer >= 1 && answer <= max) break;
+                if (answer >= 1 && answer <= allAnswers.size()) break;
             } catch (Exception ignored) {
             }
 
             System.out.print("Invalid choice, try again... ");
         }
 
-        return answer;
+        // Test if the correct answer matches the selected answer
+        return allAnswers.get(answer - 1).equals(correctAnswer);
     }
 }

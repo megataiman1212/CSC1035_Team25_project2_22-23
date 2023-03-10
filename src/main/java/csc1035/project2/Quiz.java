@@ -2,27 +2,39 @@ package csc1035.project2;
 
 import csc1035.project2.question.Question;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
+@Entity
 public class Quiz {
-    public String quizName;
-    final private ArrayList<Question> questions;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn
+    final public List<Question> questions = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String quizName;
 
     public Quiz(String quizName, Question... questions) {
         this.quizName = quizName;
-        this.questions = new ArrayList<>(Arrays.asList(questions));
+        this.questions.addAll(Arrays.asList(questions));
+    }
+
+    public Quiz() {
+        this.quizName = "Unnamed Quiz";
     }
 
     public String getQuizName() {
         return quizName;
     }
 
-    public ArrayList<Question> getQuestions() {
-        return questions;
+    public void setQuizName(String name) {
+        this.quizName = name;
     }
-    // =================================================================
+
     public void execute() {
         Collections.shuffle(questions);
         int correct = 0;
@@ -34,11 +46,11 @@ public class Quiz {
         for (int i = 0; i < questions.size(); i++) {
             Question question = questions.get(i);
 
-            String message = "Question " + (i+1);
+            String message = "Question " + (i + 1);
             System.out.println(message);
             System.out.println("-".repeat(message.length()));
 
-            if(question.execute()) {
+            if (question.execute()) {
                 System.out.println("Correct!");
                 correct++;
             } else {
@@ -53,9 +65,10 @@ public class Quiz {
 
     /**
      * Adds a question object to the list of questions for the quiz
+     *
      * @param question the question to be added to the quiz
      */
-    public void addQuestion(Question question){
+    public void addQuestion(Question question) {
         questions.add(question);
     }
 }

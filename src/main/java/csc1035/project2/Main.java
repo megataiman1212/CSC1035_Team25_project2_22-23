@@ -22,7 +22,20 @@ public class Main {
                 Pattern.compile("^alpha$", Pattern.CASE_INSENSITIVE)
         );
 
-        Quiz q = new Quiz(srq, srq, mcq, mcq);
-        q.execute();
+        Quiz q = new Quiz("Quiz", srq, srq, mcq, mcq);
+        //q.execute();
+
+        ///////////
+
+        var session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(mcq);
+        session.save(srq);
+        session.getTransaction().commit();
+
+
+        session.beginTransaction();
+        session.save(q);
+        session.getTransaction().commit();
     }
 }

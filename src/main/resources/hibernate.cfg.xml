@@ -12,13 +12,11 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <property name="hbm2ddl.auto">update </property>
+        <property name="hbm2ddl.auto">update</property>
 
-        <mapping class="csc1035.project2.question.Question" /> <!--- @todo Add a new mapping class for a new table in the database -->
-        <!--<mapping class="csc1035.project2.CLASS" />     -->
-
-        <!--- @todo add relationship mapping -->
-
-
+        <mapping class="csc1035.project2.question.Question"/>
+        <mapping class="csc1035.project2.question.MultipleChoiceQuestion"/>
+        <mapping class="csc1035.project2.question.ShortResponseQuestion"/>
+        <mapping class="csc1035.project2.Quiz"/>
     </session-factory>
 </hibernate-configuration>

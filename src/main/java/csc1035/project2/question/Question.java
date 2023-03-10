@@ -1,16 +1,25 @@
 package csc1035.project2.question;
 
+import csc1035.project2.Quiz;
+
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Question {
-
-    // @todo add hibernate notation (@id or @column etc..)
-    final protected String question;
-    final protected Topic topic;
-
-    // @todo add a no arg/default constructor
+    protected String question;
+    @Enumerated(EnumType.STRING)
+    protected Topic topic;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     public Question(String question, Topic topic) {
         this.question = question;
         this.topic = topic;
+    }
+
+    public Question() {
     }
 
     public String getQuestion() {
