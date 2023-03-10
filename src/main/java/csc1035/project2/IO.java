@@ -178,7 +178,7 @@ public class IO {
         }
     }
     public static void createQuestion(){
-
+        /*
         // Allow user input for the quizName
         System.out.println("Enter the name of the quiz : ");
         String quizName = scanner.nextLine().toLowerCase();
@@ -186,10 +186,17 @@ public class IO {
         // Assigns the quiz variable with the quiz found by the searchQuizByName
         Quiz quiz = QuizManager.searchQuizByName(quizName); // @todo fix static context error
 
+
+         */
+
+        Quiz quiz = QuizManager.selectQuiz();
+
+
         // If there is no quiz found, return
         if (quiz == null) {
             return;
         }
+
 
 
         // @todo Quiz.addQuestion(question);
