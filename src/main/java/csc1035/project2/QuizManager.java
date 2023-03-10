@@ -1,6 +1,7 @@
 package csc1035.project2;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -22,5 +23,19 @@ public class QuizManager {
     public void addQuiz(Quiz quiz){
         quizArrayList.add(quiz);
     }
+
+    public Quiz searchQuizByName(String quizName){
+        for (Quiz quiz:quizArrayList){
+            String currentQuizName = quiz.getQuizName();
+
+            if (Objects.equals(currentQuizName, quizName)){
+                System.out.println("Quiz Found");
+                return quiz;
+            }
+        }
+        System.out.println("No quiz found with the name \""+quizName+"\"");
+        return null;
+    }
+
 
 }
