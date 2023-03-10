@@ -184,7 +184,7 @@ public class IO {
         String quizName = scanner.nextLine().toLowerCase();
 
         // Assigns the quiz variable with the quiz found by the searchQuizByName
-        Quiz quiz = QuizManager.searchQuizByName(quizName); // @todo add a method to return a quiz based on the name of the quiz
+        Quiz quiz = QuizManager.searchQuizByName(quizName); // @todo fix static context error
 
         // If there is no quiz found, return
         if (quiz == null) {
