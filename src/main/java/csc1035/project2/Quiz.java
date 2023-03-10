@@ -7,12 +7,22 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Quiz {
+    public String quizName;
     final private ArrayList<Question> questions;
 
-    public Quiz(Question... questions) {
+    public Quiz(String quizName, Question... questions) {
+        this.quizName = quizName;
         this.questions = new ArrayList<>(Arrays.asList(questions));
     }
 
+    public String getQuizName() {
+        return quizName;
+    }
+
+    public ArrayList<Question> getQuestions() {
+        return questions;
+    }
+    // =================================================================
     public void execute() {
         Collections.shuffle(questions);
         int correct = 0;
