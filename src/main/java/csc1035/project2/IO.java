@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class IO {
     public static final Scanner scanner = new Scanner(System.in);
+    private static final QuizManager quizManager = new QuizManager();
 
     /**
      * Main method to provide the main run environment for the entire package.
