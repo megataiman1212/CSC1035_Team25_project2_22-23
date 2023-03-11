@@ -46,8 +46,7 @@ public class QuizManager {
         String quizName = scanner.nextLine().toLowerCase();
 
         // Assigns the quiz variable with the quiz found by the searchQuizByName
-        Quiz quiz = QuizManager.searchQuizByName(quizName); // @todo fix static context error
-        return quiz;
+        return QuizManager.searchQuizByName(quizName);
     }
 
 
