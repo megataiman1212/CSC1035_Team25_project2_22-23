@@ -1,7 +1,12 @@
 package csc1035.project2;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import csc1035.project2.question.Topic;
 
 public class IO {
     public static final Scanner scanner = new Scanner(System.in);
@@ -208,21 +213,107 @@ public class IO {
                 System.out.println("=====================");
         }
     }
-    public static void createQuestion(Quiz quiz){
-        /*
-        // Returns a Quiz object based on user inputs from
-        Quiz quiz = QuizManager.selectQuiz();
 
-        // If there is no quiz found, return
-        if (quiz == null) {
-            return;
+    public static void createQuestion(Quiz quiz){
+        // Get question type
+        System.out.println("Enter the question type (MCQ, SRQ):");
+        String type = scanner.nextLine().toLowerCase();
+
+        // Validate question type input
+        while (!type.equals("mcq") && !type.equals("srq")) {
+            System.out.println("Invalid question type");
+            System.out.println("Please enter MCQ or SRQ");
+            type = scanner.nextLine().toLowerCase();
         }
 
-         */
+        // Get question text
+        System.out.println("Enter the question text:");
+        String questionText = scanner.nextLine().trim();
+
+        // Validate question text input
+        while (questionText.isEmpty()) {
+            System.out.println("Question text cannot be empty");
+            System.out.println("Enter the question text : ");
+            questionText = scanner.nextLine().trim();
+        }
+
+        // Get topic
+        System.out.println("Enter the topic (Programming, Databases, Architecture, Maths):");
+        String topicStr = scanner.nextLine().toUpperCase();
+
+        // Validate topic input
+        Topic topic = null;
+        try {
+            topic = Topic.valueOf(topicStr);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid topic");
+            System.out.println("Enter the topic (Programming, Databases, Architecture, Maths):");
+            topicStr = scanner.nextLine().toUpperCase();
+        }
+
+        // Prompt other inputs based on question type
+        if (type.equals("mcq")) {
+            // Get choices
+            System.out.println("Enter the choices (separated by comma):");
+            String choicesStr = scanner.nextLine().trim();
+
+            // Validate choices input
+            while (choicesStr.isEmpty()) {
+                System.out.println("Choices cannot be empty");
+                System.out.println("Enter the choices (separated by comma):");
+                choicesStr = scanner.nextLine().trim();
+            }
+
+            String[] choices = choicesStr.split(",");
+            ArrayList<String> choicesList = new ArrayList<>(Arrays.asList(choices));
 
 
+            // Get correct choice
+            System.out.println("Enter the index of the correct choice (starting from 1):");
+            int correctChoiceIndex = 0;
+            try{
+                correctChoiceIndex = scanner.nextInt();
+            }
+            catch (InputMismatchException exception){
+                System.out.println("Data entered not an Int");
+                return;
+            }
 
-        // @todo Quiz.addQuestion(question);
+
+            // Validate correct choice input
+            while (correctChoiceIndex < 1 || correctChoiceIndex > choicesList.size()) {
+                System.out.println("Invalid index choice");
+                System.out.printf("Please enter a number between 1 and %d: ", choicesList.size());
+                try{
+                    correctChoiceIndex = scanner.nextInt();
+                }
+                catch (InputMismatchException exception){
+                    System.out.println("Data entered not an Int");
+                    return;
+                }
+            }
+
+            // @todo new MultipleChoiceQuestion(questionText, topic, choicesList, correctChoiceIndex);
+        } else {
+            // @todo complete SRQ modelling to be more user friendly (what is
+            // Get regex pattern
+            System.out.println("Enter the pattern:");
+            String patternStr = scanner.nextLine().trim();
+
+            // Validate regex pattern input
+            while (patternStr.isEmpty()) {
+                System.out.println("Pattern cannot be empty");
+                System.out.println("Enter the pattern.");
+                patternStr = scanner.nextLine().trim();
+            }
+
+            Pattern pattern = Pattern.compile(patternStr);
+
+            // @todo new ShortResponseQuestion(questionText, topic, pattern);
+        }
+
+
+        // Quiz.addQuestion(question);
     }
 
     public static void readQuestion(Quiz quiz){
