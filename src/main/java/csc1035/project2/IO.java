@@ -32,21 +32,18 @@ public class IO {
             switch (programChoice){
                 case 1:
                     System.out.println("SAMPLE 1");
-                    System.exit(0);
+                    manipulateQuizData();
+                    break;
                 case 2:
                     System.out.println("SAMPLE 2");
-
                     manipulateQuestionData();
-
-                    System.out.println("HERE 2");
-                    System.exit(0);
+                    break;
                 case 3:
                     System.out.println("SAMPLE 3");
-                    System.exit(0);
+                    break;
                 case 4:
                     System.out.println("SAMPLE 4");
-                    System.exit(0);
-
+                    break;
                 default:
                     // @TODO add a default case (once we have implemented all over cases)
                     System.out.println("SAMPLE DEFAULT");
@@ -100,27 +97,38 @@ public class IO {
             case 1:
                 System.out.println("Create Quiz: ");
                 createQuiz();
-                System.exit(0);
+                System.out.println("HERE1");
+                System.out.println("=====");
+                break;
             case 2:
                 System.out.println("Read Quiz : ");
                 readQuiz();
-                System.exit(0);
+                break;
             case 3:
                 System.out.println("Edit/Update Quiz : ");
                 updateQuiz();
-                System.exit(0);
+                break;
             case 4:
                 System.out.println("Delete Quiz : ");
                 deleteQuiz();
-                System.exit(0);
+                break;
         }
     }
     public static void createQuiz(){
+        Scanner scannerOverride = new Scanner(System.in);
 
+        // Allow user input for the name of the quiz
+        System.out.println("Enter the quiz name : ");
+        String quizName = scannerOverride.nextLine().toLowerCase();
+
+        // Call the method, addQuiz with a new quiz instance
+        QuizManager.addQuiz(new Quiz(quizName));
+
+        System.out.println("Quiz Successfully Added");
     }
 
     public static void readQuiz(){
-
+        System.out.println(QuizManager.selectQuiz());
     }
 
     public static void updateQuiz(){
@@ -144,6 +152,15 @@ public class IO {
      */
     public static void manipulateQuestionData(){
 
+        // Returns a Quiz object based on user inputs from
+        System.out.println("Select a quiz to edit to");
+        Quiz quiz = QuizManager.selectQuiz();
+
+        // If there is no quiz found, return
+        if (quiz == null) {
+            return;
+        }
+
         System.out.println("========================================");
         System.out.println("Chose Question Option");
         System.out.println("----------------");
@@ -166,36 +183,32 @@ public class IO {
             case 1:
                 System.out.println("Create Question : ");
                 createQuestion();
+                break;
             case 2:
                 System.out.println("Read Question : ");
                 readQuestion();
+                break;
             case 3:
                 System.out.println("Edit/Update Question : ");
                 updateQuestion();
+                break;
             case 4:
                 System.out.println("Delete Question : ");
                 deleteQuestion();
+                break;
         }
     }
     public static void createQuestion(){
         /*
-        // Allow user input for the quizName
-        System.out.println("Enter the name of the quiz : ");
-        String quizName = scanner.nextLine().toLowerCase();
-
-        // Assigns the quiz variable with the quiz found by the searchQuizByName
-        Quiz quiz = QuizManager.searchQuizByName(quizName); // @todo fix static context error
-
-
-         */
-
+        // Returns a Quiz object based on user inputs from
         Quiz quiz = QuizManager.selectQuiz();
-
 
         // If there is no quiz found, return
         if (quiz == null) {
             return;
         }
+
+         */
 
 
 
