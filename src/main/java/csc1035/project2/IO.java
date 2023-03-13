@@ -44,10 +44,13 @@ public class IO {
                 case 4:
                     System.out.println("SAMPLE 4");
                     break;
+
+                // @todo Exit Case
                 default:
                     System.out.println("=====================");
                     System.out.println("Choice Not Recognised");
                     System.out.println("=====================");
+
             }
         }
     }
