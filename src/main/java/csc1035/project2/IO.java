@@ -45,8 +45,9 @@ public class IO {
                     System.out.println("SAMPLE 4");
                     break;
                 default:
-                    // @TODO add a default case (once we have implemented all over cases)
-                    System.out.println("SAMPLE DEFAULT");
+                    System.out.println("=====================");
+                    System.out.println("Choice Not Recognised");
+                    System.out.println("=====================");
             }
         }
     }
@@ -97,8 +98,6 @@ public class IO {
             case 1:
                 System.out.println("Create Quiz: ");
                 createQuiz();
-                System.out.println("HERE1");
-                System.out.println("=====");
                 break;
             case 2:
                 System.out.println("Read Quiz : ");
@@ -112,6 +111,10 @@ public class IO {
                 System.out.println("Delete Quiz : ");
                 deleteQuiz();
                 break;
+            default:
+                System.out.println("=====================");
+                System.out.println("Choice Not Recognised");
+                System.out.println("=====================");
         }
     }
     public static void createQuiz(){
@@ -196,6 +199,10 @@ public class IO {
                 System.out.println("Delete Question : ");
                 deleteQuestion();
                 break;
+            default:
+                System.out.println("=====================");
+                System.out.println("Choice Not Recognised");
+                System.out.println("=====================");
         }
     }
     public static void createQuestion(){
