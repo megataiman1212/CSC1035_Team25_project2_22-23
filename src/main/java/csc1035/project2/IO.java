@@ -188,19 +188,19 @@ public class IO {
         switch (choice){
             case 1:
                 System.out.println("Create Question : ");
-                createQuestion();
+                createQuestion(quiz);
                 break;
             case 2:
                 System.out.println("Read Question : ");
-                readQuestion();
+                readQuestion(quiz);
                 break;
             case 3:
                 System.out.println("Edit/Update Question : ");
-                updateQuestion();
+                updateQuestion(quiz);
                 break;
             case 4:
                 System.out.println("Delete Question : ");
-                deleteQuestion();
+                deleteQuestion(quiz);
                 break;
             default:
                 System.out.println("=====================");
@@ -208,7 +208,7 @@ public class IO {
                 System.out.println("=====================");
         }
     }
-    public static void createQuestion(){
+    public static void createQuestion(Quiz quiz){
         /*
         // Returns a Quiz object based on user inputs from
         Quiz quiz = QuizManager.selectQuiz();
@@ -225,15 +225,15 @@ public class IO {
         // @todo Quiz.addQuestion(question);
     }
 
-    public static void readQuestion(){
+    public static void readQuestion(Quiz quiz){
 
     }
 
-    public static void updateQuestion(){
+    public static void updateQuestion(Quiz quiz){
 
     }
 
-    public static void deleteQuestion(){
+    public static void deleteQuestion(Quiz quiz){
 
     }
 
