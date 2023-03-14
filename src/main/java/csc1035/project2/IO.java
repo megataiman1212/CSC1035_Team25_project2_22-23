@@ -1,14 +1,17 @@
 package csc1035.project2;
 
 import csc1035.project2.question.QuestionManager;
+import csc1035.project2.quiz.Quiz;
+import csc1035.project2.quiz.QuizManager;
 
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class IO {
     public static final Scanner scanner = new Scanner(System.in);
-    private static final QuestionManager questionManager = new QuestionManager();
-    private static final QuizManager quizManager = new QuizManager();
+    public static final QuestionManager questionManager = new QuestionManager();
+    public static final QuizManager quizManager = new QuizManager();
 
     /**
      * Main method to provide the main run environment for the entire package.
@@ -124,11 +127,12 @@ public class IO {
     }
 
     public static void createQuiz() {
-        Scanner scannerOverride = new Scanner(System.in);
-
         // Allow user input for the name of the quiz
-        System.out.println("Enter the quiz name : ");
-        String quizName = scannerOverride.nextLine().toLowerCase();
+        System.out.println("Enter the quiz name: ");
+        String quizName;
+        do {
+            quizName = scanner.nextLine();
+        } while (quizName.length() == 0);
 
         // Call the method, addQuiz with a new quiz instance
         quizManager.addQuiz(new Quiz(quizName));
@@ -136,8 +140,22 @@ public class IO {
         System.out.println("Quiz Successfully Added");
     }
 
-    public static void readQuiz() {
-        System.out.println(quizManager.selectQuiz());
+    public static Optional<Quiz> readQuiz() {
+        System.out.println("Enter the quiz name: ");
+        String quizName;
+        do {
+            quizName = scanner.nextLine();
+        } while (quizName.length() == 0);
+
+        Optional<Quiz> quiz = quizManager.findQuizByName(quizName);
+
+        if (quiz.isPresent()) {
+            System.out.println("Quiz found!");
+        } else {
+            System.out.println("No quiz named \"" + quizName + "\" found.");
+        }
+
+        return quiz;
     }
 
     public static void updateQuiz() {
@@ -162,12 +180,14 @@ public class IO {
 
         // Returns a Quiz object based on user inputs from
         System.out.println("Select a quiz to edit to");
-        Quiz quiz = quizManager.selectQuiz();
+        Optional<Quiz> quizOptional = readQuiz();
 
         // If there is no quiz found, return
-        if (quiz == null) {
+        if (quizOptional.isEmpty()) {
             return;
         }
+
+        Quiz quiz = quizOptional.get();
 
         System.out.println("========================================");
         System.out.println("Chose Question Option");

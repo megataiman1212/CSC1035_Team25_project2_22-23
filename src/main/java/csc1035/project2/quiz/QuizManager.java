@@ -1,8 +1,13 @@
-package csc1035.project2;
+package csc1035.project2.quiz;
 
+import csc1035.project2.HibernateUtil;
+import csc1035.project2.IO;
+import csc1035.project2.quiz.Quiz;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.*;
 
 /**
@@ -34,17 +39,6 @@ public class QuizManager {
         }
     }
 
-    public Quiz selectQuiz() {
-        Scanner scanner = new Scanner(System.in);
-
-        // Allow user input for the quizName
-        System.out.println("Enter the name of the quiz : ");
-        String quizName = scanner.nextLine().toLowerCase();
-
-        // Assigns the quiz variable with the quiz found by the searchQuizByName
-        return searchQuizByName(quizName);
-    }
-
     /**
      * Method to add a quiz to the list of quizArrayList
      *
@@ -54,16 +48,13 @@ public class QuizManager {
         this.quizzes.add(quiz);
     }
 
-    public Quiz searchQuizByName(String quizName) {
+    public Optional<Quiz> findQuizByName(String quizName) {
         for (Quiz quiz : quizzes) {
-            String currentQuizName = quiz.getQuizName();
-
-            if (Objects.equals(currentQuizName, quizName)) {
-                System.out.println("Quiz Found");
-                return quiz;
+            if (Objects.equals(quiz.getQuizName().toLowerCase().trim(), quizName.toLowerCase().trim())) {
+                return Optional.of(quiz);
             }
         }
-        System.out.println("No quiz found with the name \"" + quizName + "\"");
-        return null;
+
+        return Optional.empty();
     }
 }

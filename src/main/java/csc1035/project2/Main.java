@@ -1,8 +1,11 @@
 package csc1035.project2;
 
 import csc1035.project2.question.MultipleChoiceQuestion;
+import csc1035.project2.question.Question;
 import csc1035.project2.question.ShortResponseQuestion;
 import csc1035.project2.question.Topic;
+import csc1035.project2.quiz.Quiz;
+import org.hibernate.Session;
 
 import java.util.regex.Pattern;
 
@@ -27,7 +30,7 @@ public class Main {
 
         ///////////
 
-        var session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(mcq);
         session.save(srq);

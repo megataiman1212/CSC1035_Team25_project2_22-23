@@ -1,4 +1,4 @@
-package csc1035.project2;
+package csc1035.project2.quiz;
 
 import csc1035.project2.question.Question;
 
