@@ -243,7 +243,7 @@ public class IO {
         String topicStr = scanner.nextLine().toUpperCase();
 
         // Validate topic input
-        Topic topic = null;
+        Topic topic;
         try {
             topic = Topic.valueOf(topicStr);
         } catch (IllegalArgumentException e) {
@@ -277,11 +277,16 @@ public class IO {
             }
 
             MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(questionText, topic, correctAnswer, wrongAnswersStr);
+            quiz.addQuestion(mcq);
+
+            // @todo add mcq to the database
 
             }
 
         else {
             // @todo complete SRQ modelling
+
+
 
             // @todo new ShortResponseQuestion(questionText, topic, pattern);
         }
@@ -306,4 +311,6 @@ public class IO {
     // =================================================================
     // =================================================================
     // =================================================================
+
+
 }
