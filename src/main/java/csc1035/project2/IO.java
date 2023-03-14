@@ -1,12 +1,16 @@
 package csc1035.project2;
 
+import csc1035.project2.question.MultipleChoiceQuestion;
 import csc1035.project2.question.QuestionManager;
+import csc1035.project2.question.ShortResponseQuestion;
+import csc1035.project2.question.Topic;
 import csc1035.project2.quiz.Quiz;
 import csc1035.project2.quiz.QuizManager;
 
 import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class IO {
     public static final Scanner scanner = new Scanner(System.in);
@@ -36,27 +40,27 @@ public class IO {
             }
 
             switch (programChoice) {
-                case 1:
+                case 1 -> {
                     System.out.println("SAMPLE 1");
                     manipulateQuizData();
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     System.out.println("SAMPLE 2");
                     manipulateQuestionData();
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     System.out.println("SAMPLE 3");
-                    break;
-                case 4:
-                    System.out.println("SAMPLE 4");
-                    break;
+                    executeQuiz();
+                }
+                case 4 -> System.out.println("SAMPLE 4");
+
 
                 // @todo Exit Case
-                default:
+                default -> {
                     System.out.println("=====================");
                     System.out.println("Choice Not Recognised");
                     System.out.println("=====================");
-
+                }
             }
         }
     }
@@ -71,7 +75,7 @@ public class IO {
         System.out.println("----------------");
         System.out.println("1 - Create, Read, Update or delete a quiz");
         System.out.println("2 - Create, Read, Update or delete a question");
-        System.out.println("3 - Sample 3");
+        System.out.println("3 - Attempt a quiz");
         System.out.println("4 - Sample 4");
         System.out.println("========================================");
     }
@@ -103,26 +107,27 @@ public class IO {
         }
 
         switch (choice) {
-            case 1:
+            case 1 -> {
                 System.out.println("Create Quiz: ");
                 createQuiz();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 System.out.println("Read Quiz : ");
                 readQuiz();
-                break;
-            case 3:
+            }
+            case 3 -> {
                 System.out.println("Edit/Update Quiz : ");
                 updateQuiz();
-                break;
-            case 4:
+            }
+            case 4 -> {
                 System.out.println("Delete Quiz : ");
                 deleteQuiz();
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("=====================");
                 System.out.println("Choice Not Recognised");
                 System.out.println("=====================");
+            }
         }
     }
 
@@ -207,43 +212,114 @@ public class IO {
         }
 
         switch (choice) {
-            case 1:
+            case 1 -> {
                 System.out.println("Create Question : ");
                 createQuestion(quiz);
-                break;
-            case 2:
+            }
+            case 2 -> {
                 System.out.println("Read Question : ");
                 readQuestion(quiz);
-                break;
-            case 3:
+            }
+            case 3 -> {
                 System.out.println("Edit/Update Question : ");
                 updateQuestion(quiz);
-                break;
-            case 4:
+            }
+            case 4 -> {
                 System.out.println("Delete Question : ");
                 deleteQuestion(quiz);
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("=====================");
                 System.out.println("Choice Not Recognised");
                 System.out.println("=====================");
+            }
         }
     }
 
     public static void createQuestion(Quiz quiz) {
-        /*
-        // Returns a Quiz object based on user inputs from
-        Quiz quiz = QuizManager.selectQuiz();
+        // Get question type
+        System.out.println("Enter the question type (MCQ, SRQ):");
+        String type = scanner.nextLine().toLowerCase();
 
-        // If there is no quiz found, return
-        if (quiz == null) {
+        // Validate question type input
+        while (!type.equals("mcq") && !type.equals("srq")) {
+            System.out.println("Invalid question type");
+            System.out.println("Please enter MCQ or SRQ");
+            type = scanner.nextLine().toLowerCase();
+        }
+
+        // Get question text
+        System.out.println("Enter the question prompt :");
+        String questionText = scanner.nextLine().trim();
+
+        // Validate question text input
+        while (questionText.isEmpty()) {
+            System.out.println("Question text cannot be empty");
+            System.out.println("Enter the question prompt : ");
+            questionText = scanner.nextLine().trim();
+        }
+
+        // Get topic
+        System.out.println("Enter the topic (Programming, Databases, Architecture, Maths):");
+        String topicStr = scanner.nextLine().toUpperCase();
+
+        // Validate topic input
+        Topic topic;
+        try {
+            topic = Topic.valueOf(topicStr);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid topic");
             return;
         }
 
-         */
+        // Prompt other inputs based on question type
+        if (type.equals("mcq")) {
 
+            // Get correctAnswer
+            System.out.println("Enter the correct answer : ");
+            String correctAnswer = scanner.nextLine().trim();
 
-        // @todo Quiz.addQuestion(question);
+            // Validate correctAnswer input
+            while (correctAnswer.isEmpty()) {
+                System.out.println("The correct answer cannot be empty");
+                System.out.println("Enter the correct answer : ");
+                correctAnswer = scanner.nextLine().trim();
+            }
+
+            // Get choices
+            System.out.println("Enter the incorrect choices (separated by comma):");
+            String wrongAnswersStr = scanner.nextLine().trim();
+
+            // Validate choices input
+            while (wrongAnswersStr.isEmpty()) {
+                System.out.println("Choices cannot be empty");
+                System.out.println("Enter the incorrect choices (separated by comma):");
+                wrongAnswersStr = scanner.nextLine().trim();
+            }
+
+            MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(questionText, topic, correctAnswer, wrongAnswersStr);
+            quiz.addQuestion(mcq);
+
+            // @todo add mcq to the database
+
+        } else {
+            // Get correctAnswer
+            System.out.println("Enter the correct answer : ");
+            String correctAnswer = scanner.nextLine().trim();
+
+            // Validate correctAnswer input
+            while (correctAnswer.isEmpty()) {
+                System.out.println("The correct answer cannot be empty");
+                System.out.println("Enter the correct answer : ");
+                correctAnswer = scanner.nextLine().trim();
+            }
+
+            ShortResponseQuestion srq = new ShortResponseQuestion(questionText, topic, Pattern.compile(correctAnswer, Pattern.CASE_INSENSITIVE));
+
+            quiz.addQuestion(srq);
+
+            // @todo add srq to the database
+        }
     }
 
     public static void readQuestion(Quiz quiz) {
@@ -262,4 +338,15 @@ public class IO {
     // =================================================================
     // =================================================================
     // =================================================================
+
+    public static void executeQuiz() {
+        // Returns a Quiz object based on user inputs from
+        readQuiz().ifPresent(Quiz::execute);
+    }
+
+
+    // =================================================================
+    // =================================================================
+    // =================================================================
+
 }
