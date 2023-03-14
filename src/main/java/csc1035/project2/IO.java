@@ -135,7 +135,7 @@ public class IO {
         } while (quizName.length() == 0);
 
         // Call the method, addQuiz with a new quiz instance
-        quizManager.addQuiz(new Quiz(quizName));
+        quizManager.createQuiz(new Quiz(quizName));
 
         System.out.println("Quiz Successfully Added");
     }

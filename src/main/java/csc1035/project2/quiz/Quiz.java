@@ -3,16 +3,13 @@ package csc1035.project2.quiz;
 import csc1035.project2.question.Question;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Quiz {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn
-    final public List<Question> questions = new ArrayList<>();
+    final public Set<Question> questions = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -47,6 +44,7 @@ public class Quiz {
     }
 
     public void execute() {
+        var questions = new ArrayList<>(this.questions);
         Collections.shuffle(questions);
         int correct = 0;
 

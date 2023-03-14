@@ -1,13 +1,9 @@
 package csc1035.project2.quiz;
 
 import csc1035.project2.HibernateUtil;
-import csc1035.project2.IO;
-import csc1035.project2.quiz.Quiz;
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import javax.persistence.criteria.CriteriaQuery;
 import java.util.*;
 
 /**
@@ -44,8 +40,20 @@ public class QuizManager {
      *
      * @param quiz the quiz being added to the quizArrayList
      */
-    public void addQuiz(Quiz quiz) {
-        this.quizzes.add(quiz);
+    public void createQuiz(Quiz quiz) {
+        if (this.quizzes.add(quiz)) {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+
+            try {
+                session.beginTransaction();
+                session.save(quiz);
+                session.getTransaction().commit();
+            } catch (HibernateException e) {
+                session.getTransaction().rollback();
+            } finally {
+                session.close();
+            }
+        }
     }
 
     public Optional<Quiz> findQuizByName(String quizName) {
@@ -56,5 +64,59 @@ public class QuizManager {
         }
 
         return Optional.empty();
+    }
+
+    public void updateQuiz(Quiz quiz) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+            session.beginTransaction();
+            session.update(quiz);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void deleteQuiz(Quiz quiz) {
+        if (this.quizzes.remove(quiz)) {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+
+            try {
+                session.beginTransaction();
+                session.delete(quiz);
+                session.getTransaction().commit();
+            } catch (HibernateException e) {
+                session.getTransaction().rollback();
+            } finally {
+                session.close();
+            }
+        }
+    }
+
+    public Set<Quiz> getQuizzes() {
+        return this.quizzes;
+    }
+
+    public void clearQuizzes() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+            session.beginTransaction();
+
+            for (var quiz : quizzes) {
+                session.delete(quiz);
+            }
+
+            quizzes.clear();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
     }
 }
