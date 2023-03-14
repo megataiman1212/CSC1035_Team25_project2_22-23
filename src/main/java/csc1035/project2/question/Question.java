@@ -1,7 +1,5 @@
 package csc1035.project2.question;
 
-import csc1035.project2.Quiz;
-
 import javax.persistence.*;
 
 @Entity

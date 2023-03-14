@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 public class Quiz {
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn
     final public List<Question> questions = new ArrayList<>();
     @Id

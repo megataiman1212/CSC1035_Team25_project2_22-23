@@ -1,15 +1,19 @@
 package csc1035.project2;
 
+import csc1035.project2.question.QuestionManager;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class IO {
     public static final Scanner scanner = new Scanner(System.in);
+    private static final QuestionManager questionManager = new QuestionManager();
     private static final QuizManager quizManager = new QuizManager();
 
     /**
      * Main method to provide the main run environment for the entire package.
      * Allow the user to select the functionality they would like to use.
+     *
      * @param args @todo comment what args is?
      */
     public static void main(String[] args) {
@@ -22,14 +26,13 @@ public class IO {
 
             // Brings programChoice into scope
             int programChoice = 0;
-            try{
+            try {
                 programChoice = scanner.nextInt();
-            }
-            catch (InputMismatchException exception){
+            } catch (InputMismatchException exception) {
                 System.out.println("Data entered not an int");
             }
 
-            switch (programChoice){
+            switch (programChoice) {
                 case 1:
                     System.out.println("SAMPLE 1");
                     manipulateQuizData();
@@ -59,7 +62,7 @@ public class IO {
     /**
      * Static method to provide the main consoleInterface
      */
-    public static void consoleInterface(){
+    public static void consoleInterface() {
         System.out.println("========================================");
         System.out.println("Program Options");
         System.out.println("----------------");
@@ -77,7 +80,7 @@ public class IO {
      * Static method that allows the user to select the program option
      * they would like to complete
      */
-    public static void manipulateQuizData(){
+    public static void manipulateQuizData() {
 
         System.out.println("========================================");
         System.out.println("Chose Quiz Option");
@@ -90,14 +93,13 @@ public class IO {
 
         // Brings choice into scope
         int choice = 0;
-        try{
+        try {
             choice = scanner.nextInt();
-        }
-        catch (InputMismatchException exception){
+        } catch (InputMismatchException exception) {
             System.out.println("Data entered not an int");
         }
 
-        switch (choice){
+        switch (choice) {
             case 1:
                 System.out.println("Create Quiz: ");
                 createQuiz();
@@ -120,7 +122,8 @@ public class IO {
                 System.out.println("=====================");
         }
     }
-    public static void createQuiz(){
+
+    public static void createQuiz() {
         Scanner scannerOverride = new Scanner(System.in);
 
         // Allow user input for the name of the quiz
@@ -128,23 +131,22 @@ public class IO {
         String quizName = scannerOverride.nextLine().toLowerCase();
 
         // Call the method, addQuiz with a new quiz instance
-        QuizManager.addQuiz(new Quiz(quizName));
+        quizManager.addQuiz(new Quiz(quizName));
 
         System.out.println("Quiz Successfully Added");
     }
 
-    public static void readQuiz(){
-        System.out.println(QuizManager.selectQuiz());
+    public static void readQuiz() {
+        System.out.println(quizManager.selectQuiz());
     }
 
-    public static void updateQuiz(){
-
-    }
-
-    public static void deleteQuiz(){
+    public static void updateQuiz() {
 
     }
 
+    public static void deleteQuiz() {
+
+    }
 
 
     // =================================================================
@@ -156,11 +158,11 @@ public class IO {
      * Static method that allows the user to select the program option
      * they would like to complete
      */
-    public static void manipulateQuestionData(){
+    public static void manipulateQuestionData() {
 
         // Returns a Quiz object based on user inputs from
         System.out.println("Select a quiz to edit to");
-        Quiz quiz = QuizManager.selectQuiz();
+        Quiz quiz = quizManager.selectQuiz();
 
         // If there is no quiz found, return
         if (quiz == null) {
@@ -178,14 +180,13 @@ public class IO {
 
         // Brings choice into scope
         int choice = 0;
-        try{
+        try {
             choice = scanner.nextInt();
-        }
-        catch (InputMismatchException exception){
+        } catch (InputMismatchException exception) {
             System.out.println("Data entered not an int");
         }
 
-        switch (choice){
+        switch (choice) {
             case 1:
                 System.out.println("Create Question : ");
                 createQuestion(quiz);
@@ -208,7 +209,8 @@ public class IO {
                 System.out.println("=====================");
         }
     }
-    public static void createQuestion(Quiz quiz){
+
+    public static void createQuestion(Quiz quiz) {
         /*
         // Returns a Quiz object based on user inputs from
         Quiz quiz = QuizManager.selectQuiz();
@@ -221,19 +223,18 @@ public class IO {
          */
 
 
-
         // @todo Quiz.addQuestion(question);
     }
 
-    public static void readQuestion(Quiz quiz){
+    public static void readQuestion(Quiz quiz) {
 
     }
 
-    public static void updateQuestion(Quiz quiz){
+    public static void updateQuestion(Quiz quiz) {
 
     }
 
-    public static void deleteQuestion(Quiz quiz){
+    public static void deleteQuestion(Quiz quiz) {
 
     }
 
