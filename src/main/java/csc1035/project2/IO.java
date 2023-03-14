@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import csc1035.project2.question.MultipleChoiceQuestion;
+import csc1035.project2.question.ShortResponseQuestion;
 import csc1035.project2.question.Topic;
 
 public class IO {
@@ -285,15 +286,23 @@ public class IO {
             }
 
         else {
-            // @todo complete SRQ modelling
+            // Get correctAnswer
+            System.out.println("Enter the correct answer : ");
+            String correctAnswer = scanner.nextLine().trim();
 
+            // Validate correctAnswer input
+            while (correctAnswer.isEmpty()) {
+                System.out.println("The correct answer cannot be empty");
+                System.out.println("Enter the correct answer : ");
+                correctAnswer = scanner.nextLine().trim();
+            }
 
+            ShortResponseQuestion srq = new ShortResponseQuestion(questionText, topic, Pattern.compile(correctAnswer,Pattern.CASE_INSENSITIVE));
 
-            // @todo new ShortResponseQuestion(questionText, topic, pattern);
+            quiz.addQuestion(srq);
+
+            // @todo add srq to the database
         }
-
-
-        // Quiz.addQuestion(question);
     }
 
     public static void readQuestion(Quiz quiz){
