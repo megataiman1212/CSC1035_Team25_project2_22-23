@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import csc1035.project2.question.MultipleChoiceQuestion;
 import csc1035.project2.question.Topic;
 
 public class IO {
@@ -227,13 +228,13 @@ public class IO {
         }
 
         // Get question text
-        System.out.println("Enter the question text:");
+        System.out.println("Enter the question prompt :");
         String questionText = scanner.nextLine().trim();
 
         // Validate question text input
         while (questionText.isEmpty()) {
             System.out.println("Question text cannot be empty");
-            System.out.println("Enter the question text : ");
+            System.out.println("Enter the question prompt : ");
             questionText = scanner.nextLine().trim();
         }
 
@@ -247,67 +248,40 @@ public class IO {
             topic = Topic.valueOf(topicStr);
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid topic");
-            System.out.println("Enter the topic (Programming, Databases, Architecture, Maths):");
-            topicStr = scanner.nextLine().toUpperCase();
+            return;
         }
 
         // Prompt other inputs based on question type
         if (type.equals("mcq")) {
+
+            // Get correctAnswer
+            System.out.println("Enter the correct answer : ");
+            String correctAnswer = scanner.nextLine().trim();
+
+            // Validate correctAnswer input
+            while (correctAnswer.isEmpty()) {
+                System.out.println("The correct answer cannot be empty");
+                System.out.println("Enter the correct answer : ");
+                correctAnswer = scanner.nextLine().trim();
+            }
+
             // Get choices
-            System.out.println("Enter the choices (separated by comma):");
-            String choicesStr = scanner.nextLine().trim();
+            System.out.println("Enter the incorrect choices (separated by comma):");
+            String wrongAnswersStr = scanner.nextLine().trim();
 
             // Validate choices input
-            while (choicesStr.isEmpty()) {
+            while (wrongAnswersStr.isEmpty()) {
                 System.out.println("Choices cannot be empty");
-                System.out.println("Enter the choices (separated by comma):");
-                choicesStr = scanner.nextLine().trim();
+                System.out.println("Enter the incorrect choices (separated by comma):");
+                wrongAnswersStr = scanner.nextLine().trim();
             }
 
-            String[] choices = choicesStr.split(",");
-            ArrayList<String> choicesList = new ArrayList<>(Arrays.asList(choices));
+            MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(questionText, topic, correctAnswer, wrongAnswersStr);
 
-
-            // Get correct choice
-            System.out.println("Enter the index of the correct choice (starting from 1):");
-            int correctChoiceIndex = 0;
-            try{
-                correctChoiceIndex = scanner.nextInt();
-            }
-            catch (InputMismatchException exception){
-                System.out.println("Data entered not an Int");
-                return;
             }
 
-
-            // Validate correct choice input
-            while (correctChoiceIndex < 1 || correctChoiceIndex > choicesList.size()) {
-                System.out.println("Invalid index choice");
-                System.out.printf("Please enter a number between 1 and %d: ", choicesList.size());
-                try{
-                    correctChoiceIndex = scanner.nextInt();
-                }
-                catch (InputMismatchException exception){
-                    System.out.println("Data entered not an Int");
-                    return;
-                }
-            }
-
-            // @todo new MultipleChoiceQuestion(questionText, topic, choicesList, correctChoiceIndex);
-        } else {
-            // @todo complete SRQ modelling to be more user friendly (what is
-            // Get regex pattern
-            System.out.println("Enter the pattern:");
-            String patternStr = scanner.nextLine().trim();
-
-            // Validate regex pattern input
-            while (patternStr.isEmpty()) {
-                System.out.println("Pattern cannot be empty");
-                System.out.println("Enter the pattern.");
-                patternStr = scanner.nextLine().trim();
-            }
-
-            Pattern pattern = Pattern.compile(patternStr);
+        else {
+            // @todo complete SRQ modelling
 
             // @todo new ShortResponseQuestion(questionText, topic, pattern);
         }
