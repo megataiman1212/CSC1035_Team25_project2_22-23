@@ -46,6 +46,7 @@ public class IO {
                     break;
                 case 3:
                     System.out.println("SAMPLE 3");
+                    executeQuiz();
                     break;
                 case 4:
                     System.out.println("SAMPLE 4");
@@ -71,7 +72,7 @@ public class IO {
         System.out.println("----------------");
         System.out.println("1 - Create, Read, Update or delete a quiz");
         System.out.println("2 - Create, Read, Update or delete a question");
-        System.out.println("3 - Sample 3");
+        System.out.println("3 - Attempt a quiz");
         System.out.println("4 - Sample 4");
         System.out.println("========================================");
     }
@@ -312,5 +313,22 @@ public class IO {
     // =================================================================
     // =================================================================
 
+    public static void executeQuiz(){
+        // Returns a Quiz object based on user inputs from
+        System.out.println("Select a quiz to execute");
+        Quiz quiz = QuizManager.selectQuiz();
+
+        // If there is no quiz found, return
+        if (quiz == null) {
+            return;
+        }
+
+        quiz.execute();
+    }
+
+
+    // =================================================================
+    // =================================================================
+    // =================================================================
 
 }
