@@ -52,9 +52,9 @@ public class IO {
                     System.out.println("SAMPLE 3");
                     executeQuiz();
                 }
-                case 4 -> System.out.println("SAMPLE 4");
-
-
+                case 4 -> {
+                    System.out.println("SAMPLE 4");
+                }
                 // @todo Exit Case
                 default -> {
                     System.out.println("=====================");
