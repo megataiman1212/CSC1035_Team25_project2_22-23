@@ -49,5 +49,33 @@ public class QuizManager {
         return QuizManager.searchQuizByName(quizName);
     }
 
+    public static boolean updateQuizName(){
+        // Select the quiz
+        Quiz name = QuizManager.selectQuiz();
+        if(name != null){
+            // Allow the user input for the newQuizName
+            System.out.println("Enter the new quiz name:");
+            Scanner sca = new Scanner(System.in);
+            String newQuizName = sca.nextLine().toLowerCase();
 
+            // Set the quizName with the newQuizName
+            name.setQuizName(newQuizName);
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    public static boolean deleteQuiz(){
+        // Select the quiz
+        Quiz quiz = QuizManager.selectQuiz();
+        if(quiz != null) {
+            // Remove the quiz from the quizArrayList
+            quizArrayList.remove(quiz);
+            return true;
+        }
+        else
+            return false;
+    }
 }

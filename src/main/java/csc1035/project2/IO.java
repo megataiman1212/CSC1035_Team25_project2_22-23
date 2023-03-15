@@ -139,10 +139,17 @@ public class IO {
 
     public static void updateQuiz(){
 
+        if(QuizManager.updateQuizName())
+            System.out.println("Updated Successfully");
+        else
+            System.out.println("Error while updating the quiz");
     }
 
     public static void deleteQuiz(){
-
+        if(QuizManager.deleteQuiz())
+            System.out.println("Deleted Successfully");
+        else
+            System.out.println("Error while deleting the quiz");
     }
 
 
