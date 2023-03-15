@@ -1,9 +1,13 @@
 package csc1035.project2;
 
 import csc1035.project2.question.MultipleChoiceQuestion;
+import csc1035.project2.question.Question;
 import csc1035.project2.question.ShortResponseQuestion;
 import csc1035.project2.question.Topic;
+import csc1035.project2.quiz.Quiz;
+import org.hibernate.Session;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Main {
@@ -22,20 +26,20 @@ public class Main {
                 Pattern.compile("^alpha$", Pattern.CASE_INSENSITIVE)
         );
 
-        Quiz q = new Quiz("Quiz", srq, srq, mcq, mcq);
+        Quiz q = new Quiz("Demo Quiz", srq, srq, mcq, mcq);
         //q.execute();
 
         ///////////
 
-        var session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.save(mcq);
-        session.save(srq);
-        session.getTransaction().commit();
+        IO.quizManager.findQuizByName("demo quiz").ifPresent(quiz -> System.out.println(quiz.questions.size()));
 
+        System.out.println("\nClearing Questions\n");
+        IO.questionManager.clearQuestions();
+        System.out.println("\nQuestions Cleared!\n");
 
-        session.beginTransaction();
-        session.save(q);
-        session.getTransaction().commit();
+        IO.questionManager.createQuestion(mcq);
+        IO.questionManager.createQuestion(srq);
+
+        IO.quizManager.createQuiz(q);
     }
 }

@@ -17,6 +17,6 @@
         <mapping class="csc1035.project2.question.Question"/>
         <mapping class="csc1035.project2.question.MultipleChoiceQuestion"/>
         <mapping class="csc1035.project2.question.ShortResponseQuestion"/>
-        <mapping class="csc1035.project2.Quiz"/>
+        <mapping class="csc1035.project2.quiz.Quiz"/>
     </session-factory>
 </hibernate-configuration>
