@@ -35,6 +35,10 @@ public class QuestionManager {
         }
     }
 
+    /**
+     * Method to add a question instance to the database.
+     * @param question question being added to the database
+     */
     public void createQuestion(Question question) {
         if (this.questions.add(question)) {
             Session session = HibernateUtil.getSessionFactory().openSession();
