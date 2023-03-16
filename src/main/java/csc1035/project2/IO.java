@@ -159,11 +159,41 @@ public class IO {
     }
 
     public static void updateQuiz() {
+        System.out.println("Enter the quiz name:");
+        String quizName;
+        do{
+            quizName = scanner.nextLine();
+        }while (quizName.length() == 0);
 
+        Optional<Quiz> quiz = quizManager.findQuizByName(quizName);
+
+        if (quiz.isPresent()){
+            Quiz quiz1 = quiz.get();
+            String newQuizName;
+
+            do{
+                System.out.println("Enter the new quiz name:");
+                newQuizName = scanner.nextLine();
+            }while (newQuizName.length() == 0);
+
+            quizManager.updateQuiz(quiz1 , newQuizName);
+        }
     }
 
     public static void deleteQuiz() {
+        System.out.println("Enter the quiz name:");
+        String quizName;
+        do{
+            quizName = scanner.nextLine();
+        }while (quizName.length() == 0);
 
+        Optional<Quiz> quiz = quizManager.findQuizByName(quizName);
+
+        if (quiz.isPresent()){
+            Quiz quiz1 = quiz.get();
+            quizManager.deleteQuiz(quiz1);
+            System.out.println("Deleted successfully");
+        }
     }
 
 
