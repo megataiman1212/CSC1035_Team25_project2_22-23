@@ -13,7 +13,7 @@ public class QuizManager {
     private final Set<Quiz> quizzes = new HashSet<>();
 
     /**
-     * Constructor for the QuizManager class that creates a list of quizzes
+     * Constructor for the QuizManager class that creates a list of quizzes from all quizzes in the database
      */
     public QuizManager() {
         Session session = HibernateUtil.getSessionFactory().openSession();
