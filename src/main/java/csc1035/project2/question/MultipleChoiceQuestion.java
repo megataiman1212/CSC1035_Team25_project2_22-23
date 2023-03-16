@@ -26,6 +26,9 @@ public class MultipleChoiceQuestion extends Question {
         this.wrongAnswers = List.of(wrongAnswers);
     }
 
+    /**
+     * Default empty constructor
+     */
     public MultipleChoiceQuestion() {
     }
 
