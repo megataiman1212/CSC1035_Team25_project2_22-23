@@ -9,6 +9,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Class to represent all existing quizzes as a list of quizzes
+ * Contains fields for:
+ * questions
+ * Contains methods for:
+ * - Method to add a question instance to the database.
+ * - Method to update an existing question in the database with a question object
+ * - Method to update an existing quiz in the database with a new quiz object to override
+ * - Method to delete a question from the database
+ * - Method to clear all questions from the database
+ *
+ * @version 1
+ */
 public class QuestionManager {
     private final Set<Question> questions = new HashSet<>();
 
