@@ -114,6 +114,10 @@ public class QuizManager {
         }
     }
 
+    /**
+     * Get a list of all quizzes
+     * @return a list of all quizzes
+     */
     public Set<Quiz> getQuizzes() {
         return this.quizzes;
     }
