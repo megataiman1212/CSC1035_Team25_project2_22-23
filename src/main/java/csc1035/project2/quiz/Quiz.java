@@ -32,7 +32,10 @@ public class Quiz {
         this.quizName = "Unnamed Quiz";
     }
 
-
+    /**
+     * Get the quizName
+     * @return the quizName
+     */
     public String getQuizName() {
         return quizName;
     }
