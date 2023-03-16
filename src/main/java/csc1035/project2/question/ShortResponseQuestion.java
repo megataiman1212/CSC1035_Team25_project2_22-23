@@ -11,6 +11,13 @@ public class ShortResponseQuestion extends Question {
     // @TODO Store the pattern in hibernate as a regex string rather than a blob
     protected Pattern pattern;
 
+    /**
+     * Constructor for creating ShortResponseQuestion Instance
+     *
+     * @param question the prompt for the question
+     * @param topic the topic for the question
+     * @param pattern the answer/pattern of the question
+     */
     public ShortResponseQuestion(String question, Topic topic, Pattern pattern) {
         super(question, topic);
         this.pattern = pattern;
