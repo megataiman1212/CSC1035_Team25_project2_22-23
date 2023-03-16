@@ -9,6 +9,25 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Class to act as the interface in-which to interact with the software package
+ * Contains methods for:
+ * - Main method to begin main user route, displaying program options
+ * - Displaying a console interface
+ * - Method extending from main to allow the user to select how they would like to manipulateQuizData
+ *      - Method to Create quizzes
+ *      - Method to Read quizzes
+ *      - Method to Edit quizzes
+ *      - Method to Delete quizzes
+ * - Method extending from main to allow the user to select how they would like to manipulateQuestionData
+ *      - Method to Create questions
+ *      - Method to Read questions
+ *      - Method to Edit questions
+ *      - Method to delete questions
+ * - Method to execute a saved quiz
+ *
+ * @version 1
+ */
 public class IO {
     public static final Scanner scanner = new Scanner(System.in);
     public static final QuestionManager questionManager = new QuestionManager();
@@ -80,8 +99,7 @@ public class IO {
     // =================================================================
 
     /**
-     * Static method that allows the user to select the program option
-     * they would like to complete
+     * Static method that allows the user to select the program option they would like to complete
      */
     public static void manipulateQuizData() {
 
@@ -204,8 +222,7 @@ public class IO {
 
 
     /**
-     * Static method that allows the user to select the program option
-     * they would like to complete
+     * Static method that allows the user to select the program option they would like to complete
      */
     public static void manipulateQuestionData() {
 
