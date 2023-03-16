@@ -27,14 +27,6 @@ public class Quiz {
         this.quizName = "Unnamed Quiz";
     }
 
-    /*
-    public String toString(){
-        return " <== " + quizName + " ==> " +
-                questions.toString();
-
-    }
-     */
-
     public String getQuizName() {
         return quizName;
     }
