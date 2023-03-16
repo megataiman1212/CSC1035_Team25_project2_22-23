@@ -93,7 +93,11 @@ public class QuizManager {
         }
     }
 
-
+    /**
+     * Method to delete a quiz from the database
+     *
+     * @param quiz the quiz object being deleted
+     */
     public void deleteQuiz(Quiz quiz) {
         if (this.quizzes.remove(quiz)) {
             Session session = HibernateUtil.getSessionFactory().openSession();
