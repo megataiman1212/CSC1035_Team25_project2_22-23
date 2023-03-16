@@ -55,6 +55,7 @@ public class IO {
                     System.out.println("=====================");
                     System.out.println("Choice Not Recognised");
                     System.out.println("=====================");
+                    System.exit(0);
                 }
             }
         }
