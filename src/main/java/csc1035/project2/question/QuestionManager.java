@@ -55,6 +55,10 @@ public class QuestionManager {
         }
     }
 
+    /**
+     * Method to update an existing question in the database with a question object
+     * @param question question overriding the database question
+     */
     public void updateQuestion(Question question) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
