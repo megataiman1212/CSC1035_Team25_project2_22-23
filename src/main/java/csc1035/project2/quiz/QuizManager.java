@@ -122,6 +122,9 @@ public class QuizManager {
         return this.quizzes;
     }
 
+    /**
+     * Method to clear all quizzes from the database
+     */
     public void clearQuizzes() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
