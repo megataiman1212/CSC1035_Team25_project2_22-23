@@ -56,6 +56,12 @@ public class QuizManager {
         }
     }
 
+    /**
+     * Method to return an optional quiz object with a quizName that matches an inputted string
+     *
+     * @param quizName inputted string to query
+     * @return quiz if quiz has a value
+     */
     public Optional<Quiz> findQuizByName(String quizName) {
         for (Quiz quiz : quizzes) {
             if (Objects.equals(quiz.getQuizName().toLowerCase().trim(), quizName.toLowerCase().trim())) {
