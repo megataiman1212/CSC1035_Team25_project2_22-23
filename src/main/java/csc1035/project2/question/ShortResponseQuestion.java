@@ -5,6 +5,15 @@ import csc1035.project2.IO;
 import javax.persistence.*;
 import java.util.regex.Pattern;
 
+/**
+ * Subclass of Question to represent Short Response QuestionQuestion
+ * Contains fields for:
+ * question, topic, pattern
+ * Contains methods for:
+ * - Method to execute the main prompt string for the question
+ *
+ * @version 1
+ */
 @Entity
 @PrimaryKeyJoinColumn
 public class ShortResponseQuestion extends Question {
