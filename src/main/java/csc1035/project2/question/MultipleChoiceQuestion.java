@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.*;
 
 /**
- * Class to represent a MultipleChoiceQuestion
+ * Subclass of Question to represent a MultipleChoiceQuestion
  * Contains fields for:
  * question, topic, correctAnswer, wrongAnswers
  * Contains methods for:
