@@ -2,6 +2,13 @@ package csc1035.project2.question;
 
 import javax.persistence.*;
 
+/**
+ * Abstract class representing a Question object
+ * Contains fields for:
+ * question, topic
+ *
+ * @version 1
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Question {
