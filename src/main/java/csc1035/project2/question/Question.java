@@ -12,6 +12,11 @@ public abstract class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /**
+     * Constructor for Question class
+     * @param question the prompt for the question
+     * @param topic the topic of the question
+     */
     public Question(String question, Topic topic) {
         this.question = question;
         this.topic = topic;
