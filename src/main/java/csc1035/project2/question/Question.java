@@ -22,6 +22,9 @@ public abstract class Question {
         this.topic = topic;
     }
 
+    /**
+     * Default empty constructor
+     */
     public Question() {
     }
 
