@@ -36,6 +36,10 @@ public abstract class Question {
         return question;
     }
 
+    /**
+     * toString method to return question as a string with formatting
+     * @return question as a string with formatting
+     */
     @Override
     public String toString() {
         return question + '\n' + "-".repeat(question.length());
