@@ -66,11 +66,12 @@ public class QuizManager {
         return Optional.empty();
     }
 
-    public void updateQuiz(Quiz quiz) {
+    public void updateQuiz(Quiz quiz, String newQuizName) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
             session.beginTransaction();
+            quiz.setQuizName(newQuizName);
             session.update(quiz);
             session.getTransaction().commit();
         } catch (HibernateException e) {
