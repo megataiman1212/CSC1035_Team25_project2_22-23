@@ -7,7 +7,17 @@ import org.hibernate.Session;
 import java.util.*;
 
 /**
+ * Class to represent all existing quizzes as a list of quizzes
+ * Contains fields for:
+ * quizzes
+ * Contains methods for:
+ * - Method to add a quiz to the list of quizArrayList
+ * - Method to return an optional quiz object with a quizName that matches an inputted string
+ * - Method to update an existing quiz in the database with a new quiz object to override
+ * - Method to delete a quiz from the database
+ * - Method to clear all quizzes from the database
  *
+ * @version 1
  */
 public class QuizManager {
     private final Set<Quiz> quizzes = new HashSet<>();
