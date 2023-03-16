@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.regex.Pattern;
 
 /**
- * Subclass of Question to represent Short Response QuestionQuestion
+ * Subclass of Question to represent a ShortResponseQuestion
  * Contains fields for:
  * question, topic, pattern
  * Contains methods for:
