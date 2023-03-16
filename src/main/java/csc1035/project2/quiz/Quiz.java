@@ -40,7 +40,10 @@ public class Quiz {
         return quizName;
     }
 
-
+    /**
+     * Set the quizName
+     * @param name name of the quiz
+     */
     public void setQuizName(String name) {
         this.quizName = name;
     }
