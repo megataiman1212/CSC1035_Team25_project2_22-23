@@ -72,6 +72,12 @@ public class QuizManager {
         return Optional.empty();
     }
 
+    /**
+     * Method to update an existing quiz in the database with a new quiz object to override
+     *
+     * @param quiz the quiz object being inputted
+     * @param newQuizName the new name of the quiz
+     */
     public void updateQuiz(Quiz quiz, String newQuizName) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -86,6 +92,7 @@ public class QuizManager {
             session.close();
         }
     }
+
 
     public void deleteQuiz(Quiz quiz) {
         if (this.quizzes.remove(quiz)) {
