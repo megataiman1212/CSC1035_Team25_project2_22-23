@@ -48,6 +48,9 @@ public class Quiz {
         this.quizName = name;
     }
 
+    /**
+     * Method to execute the list of questions, by displaying the question prompt
+     */
     public void execute() {
         var questions = new ArrayList<>(this.questions);
         Collections.shuffle(questions);
