@@ -5,6 +5,15 @@ import csc1035.project2.IO;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Class to represent a MultipleChoiceQuestion
+ * Contains fields for:
+ * question, topic, correctAnswer, wrongAnswers
+ * Contains methods for:
+ * - Method to execute the main prompt string for the question
+ *
+ * @version 1
+ */
 @Entity
 @PrimaryKeyJoinColumn
 public class MultipleChoiceQuestion extends Question {
