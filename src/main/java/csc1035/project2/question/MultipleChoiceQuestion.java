@@ -32,6 +32,10 @@ public class MultipleChoiceQuestion extends Question {
     public MultipleChoiceQuestion() {
     }
 
+    /**
+     * Method to execute the main prompt string for the question, implemented from question.java
+     * @return @todo what does this return
+     */
     public boolean execute() {
         // Set up answers
         ArrayList<String> allAnswers = new ArrayList<>(wrongAnswers);
