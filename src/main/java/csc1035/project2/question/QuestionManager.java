@@ -37,6 +37,7 @@ public class QuestionManager {
 
     /**
      * Method to add a question instance to the database.
+     *
      * @param question question being added to the database
      */
     public void createQuestion(Question question) {
@@ -57,6 +58,7 @@ public class QuestionManager {
 
     /**
      * Method to update an existing question in the database with a question object
+     *
      * @param question question overriding the database question
      */
     public void updateQuestion(Question question) {
@@ -73,6 +75,11 @@ public class QuestionManager {
         }
     }
 
+    /**
+     * Method to delete a question from the database
+     *
+     * @param question the question object being deleted
+     */
     public void deleteQuestion(Question question) {
         if (this.questions.remove(question)) {
             Session session = HibernateUtil.getSessionFactory().openSession();
