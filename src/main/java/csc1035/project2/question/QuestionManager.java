@@ -12,6 +12,9 @@ import java.util.Set;
 public class QuestionManager {
     private final Set<Question> questions = new HashSet<>();
 
+    /**
+     * Constructor for the QuestionManager class that creates a hashmap of all questions in the database
+     */
     public QuestionManager() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
