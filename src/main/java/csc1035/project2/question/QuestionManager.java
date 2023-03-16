@@ -96,10 +96,16 @@ public class QuestionManager {
         }
     }
 
+    /**
+     * Get a list of all questions
+     *
+     * @return a set of all questions
+     */
     public Set<Question> getQuestions() {
         return this.questions;
     }
 
+    
     public void clearQuestions() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
