@@ -37,6 +37,10 @@ public class ShortResponseQuestion extends Question {
         this.pattern = pattern;
     }
 
+    /**
+     * Method to return a string value for pattern
+     * @return string value for pattern
+     */
     @Column
     public String stringPattern() {
         return pattern.toString();
