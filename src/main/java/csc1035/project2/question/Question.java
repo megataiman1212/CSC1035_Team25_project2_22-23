@@ -28,6 +28,10 @@ public abstract class Question {
     public Question() {
     }
 
+    /**
+     * Get the question
+     * @return the question
+     */
     public String getQuestion() {
         return question;
     }
