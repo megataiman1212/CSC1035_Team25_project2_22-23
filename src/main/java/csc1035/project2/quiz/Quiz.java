@@ -5,6 +5,15 @@ import csc1035.project2.question.Question;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Class to represent a quiz and all questions that belong to it
+ * Contains fields for:
+ * id, quizName, questions
+ * Contains methods for:
+ * - Method to execute the list of questions, by displaying the question prompt
+ *
+ * @version 1
+ */
 @Entity
 public class Quiz {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
