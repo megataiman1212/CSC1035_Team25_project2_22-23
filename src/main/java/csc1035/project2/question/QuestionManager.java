@@ -105,7 +105,9 @@ public class QuestionManager {
         return this.questions;
     }
 
-    
+    /**
+     * Method to clear all questions from the database
+     */
     public void clearQuestions() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
