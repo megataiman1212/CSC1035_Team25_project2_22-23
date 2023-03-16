@@ -23,6 +23,9 @@ public class ShortResponseQuestion extends Question {
         this.pattern = pattern;
     }
 
+    /**
+     * Default empty constructor
+     */
     public ShortResponseQuestion() {
     }
 
