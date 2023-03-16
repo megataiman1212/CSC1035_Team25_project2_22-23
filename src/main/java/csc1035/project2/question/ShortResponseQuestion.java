@@ -39,6 +39,7 @@ public class ShortResponseQuestion extends Question {
 
     /**
      * Method to return a string value for pattern
+     *
      * @return string value for pattern
      */
     @Column
@@ -46,6 +47,11 @@ public class ShortResponseQuestion extends Question {
         return pattern.toString();
     }
 
+    /**
+     * Method to execute the main prompt string for the question, implemented from question.java
+     *
+     * @return @todo what does this return
+     */
     @Override
     public boolean execute() {
         // Print the question to console
