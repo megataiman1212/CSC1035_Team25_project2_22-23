@@ -1,9 +1,6 @@
 package csc1035.project2;
 
-import csc1035.project2.question.MultipleChoiceQuestion;
-import csc1035.project2.question.QuestionManager;
-import csc1035.project2.question.ShortResponseQuestion;
-import csc1035.project2.question.Topic;
+import csc1035.project2.question.*;
 import csc1035.project2.quiz.Quiz;
 import csc1035.project2.quiz.QuizManager;
 
@@ -20,8 +17,6 @@ public class IO {
     /**
      * Main method to provide the main run environment for the entire package.
      * Allow the user to select the functionality they would like to use.
-     *
-     * @param args @todo comment what args is?
      */
     public static void main(String[] args) {
 
@@ -300,7 +295,8 @@ public class IO {
             MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(questionText, topic, correctAnswer, wrongAnswersStr);
             quiz.addQuestion(mcq);
 
-            // @todo add mcq to the database
+            // add mcq to the database
+            questionManager.createQuestion(mcq);
 
         } else {
             // Get correctAnswer
@@ -318,7 +314,8 @@ public class IO {
 
             quiz.addQuestion(srq);
 
-            // @todo add srq to the database
+            // add srq to the database
+            questionManager.createQuestion(srq);
         }
     }
 
