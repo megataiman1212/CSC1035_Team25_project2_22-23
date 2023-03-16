@@ -29,6 +29,10 @@ public class ShortResponseQuestion extends Question {
     public ShortResponseQuestion() {
     }
 
+    /**
+     * Set the answer/pattern
+     * @param pattern the answer/pattern
+     */
     public void setPattern(Pattern pattern) {
         this.pattern = pattern;
     }
