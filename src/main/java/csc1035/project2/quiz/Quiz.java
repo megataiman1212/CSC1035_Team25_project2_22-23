@@ -15,6 +15,11 @@ public class Quiz {
     private int id;
     private String quizName;
 
+    /**
+     * Constructor for Quiz that takes a list of questions and a quizName
+     * @param quizName the name of the quiz
+     * @param questions the questions to be added to the quiz
+     */
     public Quiz(String quizName, Question... questions) {
         this.quizName = quizName;
         this.questions.addAll(Arrays.asList(questions));
@@ -27,9 +32,11 @@ public class Quiz {
         this.quizName = "Unnamed Quiz";
     }
 
+
     public String getQuizName() {
         return quizName;
     }
+
 
     public void setQuizName(String name) {
         this.quizName = name;
