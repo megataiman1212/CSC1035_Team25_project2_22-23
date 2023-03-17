@@ -15,15 +15,15 @@ import java.util.regex.Pattern;
  * - Main method to begin main user route, displaying program options
  * - Displaying a console interface
  * - Method extending from main to allow the user to select how they would like to manipulateQuizData
- *      - Method to Create quizzes
- *      - Method to Read quizzes
- *      - Method to Edit quizzes
- *      - Method to Delete quizzes
+ *      - Method to Create quiz objects
+ *      - Method to Read quiz objects
+ *      - Method to Edit quiz objects
+ *      - Method to Delete quiz objects
  * - Method extending from main to allow the user to select how they would like to manipulateQuestionData
- *      - Method to Create questions
- *      - Method to Read questions
- *      - Method to Edit questions
- *      - Method to delete questions
+ *      - Method to Create question objects
+ *      - Method to Read question objects
+ *      - Method to Edit question objects
+ *      - Method to delete question objects
  * - Method to execute a saved quiz
  * - @todo previously answer wrong questions
  * @version 1
@@ -210,6 +210,9 @@ public class IO {
         }
     }
 
+    /**
+     * Static method to prompt user input to delete a quiz from the databasse
+     */
     public static void deleteQuiz() {
         System.out.println("Enter the quiz name:");
         String quizName;
