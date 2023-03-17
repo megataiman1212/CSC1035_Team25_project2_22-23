@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  *      - Method to Edit questions
  *      - Method to delete questions
  * - Method to execute a saved quiz
- *
+ * - @todo previously answer wrong questions
  * @version 1
  */
 public class IO {
@@ -94,6 +94,7 @@ public class IO {
         System.out.println("4 - Sample 4");
         System.out.println("========================================");
     }
+
     // =================================================================
     // =================== Manipulating Quizzes ========================
     // =================================================================
@@ -145,6 +146,9 @@ public class IO {
         }
     }
 
+    /**
+     * Static method to prompt user input to create a quiz object
+     */
     public static void createQuiz() {
         // Allow user input for the name of the quiz
         System.out.println("Enter the quiz name: ");
@@ -159,6 +163,10 @@ public class IO {
         System.out.println("Quiz Successfully Added");
     }
 
+    /**
+     * Static method to optionally return a quiz from an inputted string based on a matching quizName
+     * @return quiz that matches quizName
+     */
     public static Optional<Quiz> readQuiz() {
         System.out.println("Enter the quiz name: ");
         String quizName;
