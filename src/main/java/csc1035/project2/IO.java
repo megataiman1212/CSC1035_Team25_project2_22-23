@@ -394,6 +394,9 @@ public class IO {
 
     }
 
+    /**
+     * Static method to prompt user input to update a question object and override database
+     */
     public static void updateQuestion(Quiz quiz) {
 
     }
