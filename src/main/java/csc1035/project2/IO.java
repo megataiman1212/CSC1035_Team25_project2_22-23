@@ -211,7 +211,7 @@ public class IO {
     }
 
     /**
-     * Static method to prompt user input to delete a quiz from the databasse
+     * Static method to prompt user input to delete a quiz from the database
      */
     public static void deleteQuiz() {
         System.out.println("Enter the quiz name:");
@@ -293,6 +293,10 @@ public class IO {
         }
     }
 
+    /**
+     * Method to prompt user input to create a question object and add to the database
+     * @param quiz quiz that question will be held within
+     */
     public static void createQuestion(Quiz quiz) {
         // Get question type
         System.out.println("Enter the question type (MCQ, SRQ):");
@@ -354,10 +358,13 @@ public class IO {
                 wrongAnswersStr = scanner.nextLine().trim();
             }
 
+            // Establish MultipleChoiceQuestion object using inputs from above
             MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(questionText, topic, correctAnswer, wrongAnswersStr);
+
+            // Add mcq to the quiz
             quiz.addQuestion(mcq);
 
-            // add mcq to the database
+            // Add mcq to the database
             questionManager.createQuestion(mcq);
 
         } else {
@@ -372,11 +379,13 @@ public class IO {
                 correctAnswer = scanner.nextLine().trim();
             }
 
+            // Establish ShortResponseQuestion object using inputs from above
             ShortResponseQuestion srq = new ShortResponseQuestion(questionText, topic, Pattern.compile(correctAnswer, Pattern.CASE_INSENSITIVE));
 
+            // Add srq to the quiz
             quiz.addQuestion(srq);
 
-            // add srq to the database
+            // Add srq to the database
             questionManager.createQuestion(srq);
         }
     }
