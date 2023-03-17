@@ -398,6 +398,9 @@ public class IO {
 
     }
 
+    /**
+     * Static method to prompt user input to delete a question from the database
+     */
     public static void deleteQuestion(Quiz quiz) {
 
     }
