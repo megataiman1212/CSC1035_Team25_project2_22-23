@@ -147,7 +147,7 @@ public class IO {
     }
 
     /**
-     * Static method to prompt user input to create a quiz object
+     * Static method to prompt user input to create a quiz object and add to database
      */
     public static void createQuiz() {
         // Allow user input for the name of the quiz
@@ -185,6 +185,9 @@ public class IO {
         return quiz;
     }
 
+    /**
+     * Static method to prompt user input to update a quiz object and override database
+     */
     public static void updateQuiz() {
         System.out.println("Enter the quiz name:");
         String quizName;
