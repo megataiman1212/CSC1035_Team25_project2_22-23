@@ -398,6 +398,9 @@ public class IO {
     // =================================================================
     // =================================================================
 
+    /**
+     * Method to execute a saved quiz
+     */
     public static void executeQuiz() {
         // Returns a Quiz object based on user inputs from
         readQuiz().ifPresent(Quiz::execute);
