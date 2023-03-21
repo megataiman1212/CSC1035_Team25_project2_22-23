@@ -391,11 +391,12 @@ public class IO {
     }
 
     /**
-     * Static method to optionally return a question from an inputted string based on
-     *
+     * Static method to optionally return a question from an inputted string based on @todo
+     * @return @todo
      */
-    public static void readQuestion(Quiz quiz) {
+    public static Optional<Question> readQuestion(Quiz quiz) {
 
+        // @todo return question;
     }
 
     /**
