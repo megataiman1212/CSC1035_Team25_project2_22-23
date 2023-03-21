@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  *      - Method to Edit question objects
  *      - Method to delete question objects
  * - Method to execute a saved quiz
- * - @todo Method to execute a quiz of questions previously answered incorrect
+ * - Method to execute a quiz of questions previously answered incorrect
  * - Import and Export Methods
  *      - Method to export a list of questions to a specified file
  *      - Method to import a list of questions from a specified file
