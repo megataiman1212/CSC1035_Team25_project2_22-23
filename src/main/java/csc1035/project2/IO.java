@@ -75,7 +75,30 @@ public class IO {
                     // @todo quiz of incorrect questions method
                 }
                 case 5 -> {
-
+                    System.out.println("Import or Export to file :");
+                    System.out.println("Type \"1\" Import");
+                    System.out.println("Type \"2\" to Export");
+                    // Brings programChoice into scope
+                    int importOrExportChoice = 0;
+                    try {
+                        importOrExportChoice = scanner.nextInt();
+                    } catch (InputMismatchException exception) {
+                        System.out.println("Data entered not an int");
+                    }
+                    switch (importOrExportChoice){
+                        case 1-> {
+                            importQuestions();
+                        }
+                        case 2 -> {
+                            exportQuestions();
+                        }
+                        default -> {
+                            System.out.println("=====================");
+                            System.out.println("Choice Not Recognised");
+                            System.out.println("=====================");
+                            System.exit(0);
+                        }
+                    }
                 }
                 case 6 -> {
                     System.out.println("SAMPLE 6");
