@@ -26,6 +26,10 @@ import java.util.regex.Pattern;
  *      - Method to delete question objects
  * - Method to execute a saved quiz
  * - @todo previously answer wrong questions
+ * - Import and Export Methods
+ *      - Method to export a list of questions to a specified file
+ *      - Method to import a list of questions from a specified file
+ *
  * @version 1
  */
 public class IO {
@@ -55,19 +59,26 @@ public class IO {
 
             switch (programChoice) {
                 case 1 -> {
-                    System.out.println("SAMPLE 1");
+                    System.out.println("Manipulate Quiz Data");
                     manipulateQuizData();
                 }
                 case 2 -> {
-                    System.out.println("SAMPLE 2");
+                    System.out.println("Manipulate Question Data");
                     manipulateQuestionData();
                 }
                 case 3 -> {
-                    System.out.println("SAMPLE 3");
+                    System.out.println("Executing quiz");
                     executeQuiz();
                 }
                 case 4 -> {
-                    System.out.println("SAMPLE 4");
+                    System.out.println("Execute Quiz of incorrect questions");
+                    // @todo quiz of incorrect questions method
+                }
+                case 5 -> {
+
+                }
+                case 6 -> {
+                    System.out.println("SAMPLE 6");
                 }
                 // @todo Exit Case
                 default -> {
@@ -424,6 +435,26 @@ public class IO {
     public static void executeQuiz() {
         // Returns a Quiz object based on user inputs from readQuiz and executes the quiz
         readQuiz().ifPresent(Quiz::execute);
+    }
+
+    // =================================================================
+    // =================================================================
+    // =================================================================
+
+    /**
+     * Static method to export a list of question to a hardcoded file
+     * Mirrors importQuestions
+     */
+    public static void exportQuestions(){
+
+    }
+
+    /**
+     * Static method to import a list of questions from a hardcoded file
+     * Mirrors exportQuestions
+     */
+    public static void importQuestions(){
+
     }
 
 
