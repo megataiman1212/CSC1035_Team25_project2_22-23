@@ -422,7 +422,7 @@ public class IO {
      * Method to execute a saved quiz
      */
     public static void executeQuiz() {
-        // Returns a Quiz object based on user inputs from readQuiz
+        // Returns a Quiz object based on user inputs from readQuiz and executes the quiz
         readQuiz().ifPresent(Quiz::execute);
     }
 
