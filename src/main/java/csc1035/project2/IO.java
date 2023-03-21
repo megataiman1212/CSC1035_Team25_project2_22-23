@@ -241,7 +241,7 @@ public class IO {
     public static void manipulateQuestionData() {
 
         // Returns a Quiz object based on user inputs from
-        System.out.println("Select a quiz to edit to");
+        System.out.println("Select a quiz to access questions to : ");
         Optional<Quiz> quizOptional = readQuiz();
 
         // If there is no quiz found, return
