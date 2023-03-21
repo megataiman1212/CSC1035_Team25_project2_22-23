@@ -128,7 +128,7 @@ public class IO {
             }
             case 2 -> {
                 System.out.println("Read Quiz : ");
-                readQuiz();
+                System.out.println(readQuiz());
             }
             case 3 -> {
                 System.out.println("Edit/Update Quiz : ");
@@ -275,7 +275,7 @@ public class IO {
             }
             case 2 -> {
                 System.out.println("Read Question : ");
-                readQuestion(quiz);
+                System.out.println(readQuestion(quiz));
             }
             case 3 -> {
                 System.out.println("Edit/Update Question : ");
@@ -422,7 +422,7 @@ public class IO {
      * Method to execute a saved quiz
      */
     public static void executeQuiz() {
-        // Returns a Quiz object based on user inputs from
+        // Returns a Quiz object based on user inputs from readQuiz
         readQuiz().ifPresent(Quiz::execute);
     }
 
