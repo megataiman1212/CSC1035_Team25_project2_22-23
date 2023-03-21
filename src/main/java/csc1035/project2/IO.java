@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  *      - Method to Edit question objects
  *      - Method to delete question objects
  * - Method to execute a saved quiz
- * - @todo previously answer wrong questions
+ * - @todo Method to execute a quiz of questions previously answered incorrect
  * - Import and Export Methods
  *      - Method to export a list of questions to a specified file
  *      - Method to import a list of questions from a specified file
@@ -76,29 +76,7 @@ public class IO {
                 }
                 case 5 -> {
                     System.out.println("Import or Export to file :");
-                    System.out.println("Type \"1\" Import");
-                    System.out.println("Type \"2\" to Export");
-                    // Brings programChoice into scope
-                    int importOrExportChoice = 0;
-                    try {
-                        importOrExportChoice = scanner.nextInt();
-                    } catch (InputMismatchException exception) {
-                        System.out.println("Data entered not an int");
-                    }
-                    switch (importOrExportChoice){
-                        case 1-> {
-                            importQuestions();
-                        }
-                        case 2 -> {
-                            exportQuestions();
-                        }
-                        default -> {
-                            System.out.println("=====================");
-                            System.out.println("Choice Not Recognised");
-                            System.out.println("=====================");
-                            System.exit(0);
-                        }
-                    }
+                    importOrExport();
                 }
                 case 6 -> {
                     System.out.println("SAMPLE 6");
@@ -464,6 +442,35 @@ public class IO {
     // =================================================================
     // =================================================================
     // =================================================================
+
+    /**
+     * Static method to provide the interface to choose whether to import or export
+     */
+    public static void importOrExport(){
+        System.out.println("Type \"1\" Import");
+        System.out.println("Type \"2\" to Export");
+        // Brings programChoice into scope
+        int importOrExportChoice = 0;
+        try {
+            importOrExportChoice = scanner.nextInt();
+        } catch (InputMismatchException exception) {
+            System.out.println("Data entered not an int");
+        }
+        switch (importOrExportChoice){
+            case 1-> {
+                importQuestions();
+            }
+            case 2 -> {
+                exportQuestions();
+            }
+            default -> {
+                System.out.println("=====================");
+                System.out.println("Choice Not Recognised");
+                System.out.println("=====================");
+                System.exit(0);
+            }
+        }
+    }
 
     /**
      * Static method to export a list of question to a hardcoded file
