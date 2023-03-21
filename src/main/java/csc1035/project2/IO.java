@@ -124,8 +124,9 @@ public class IO {
         System.out.println("----------------");
         System.out.println("1 - Create, Read, Update or delete a quiz");
         System.out.println("2 - Create, Read, Update or delete a question");
-        System.out.println("3 - Attempt a quiz");
-        System.out.println("4 - Sample 4");
+        System.out.println("3 - Execute a quiz");
+        System.out.println("4 - Execute quiz of questions previously answered incorrectly");
+        System.out.println("5 - Import or Export a list of questions to a file");
         System.out.println("========================================");
     }
 
