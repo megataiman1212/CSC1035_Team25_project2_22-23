@@ -43,9 +43,12 @@ public class Testing {
         IO.deleteQuiz();
         // ==================
         IO.createQuestion(q);
-        IO.readQuestion(q);
+        System.out.println("===================== Reading Question ==========================");
+        System.out.println(IO.readQuestion(q));
+        System.out.println("=================================================================");
         IO.updateQuestion(q);
         IO.deleteQuestion(q);
+        System.out.println("=================================================================");
 
 
 
