@@ -87,6 +87,8 @@ public class Quiz {
         }
 
         System.out.printf("You got %s/%s right!%n", correct, questions.size());
+
+        // @ todo allow the user to see questions they got wrong/see the answers to mark it themselves
     }
 
     /**
