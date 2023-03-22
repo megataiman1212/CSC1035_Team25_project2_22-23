@@ -501,9 +501,9 @@ public class IO {
     }
 
     /**
-     * Static method to generate a quiz of questions based on user choice
+     * Static method to generate and execute a quiz of questions based on user choice
      */
-    public static void generateQuiz (int quizSize){
+    public static void generateQuiz (){
 
     }
 
