@@ -493,4 +493,18 @@ public class IO {
     // =================================================================
     // =================================================================
 
+    /**
+     * Static method to generate a quiz of questions previously answered incorrectly
+     */
+    public static void generateIncorrectQuiz(){
+
+    }
+
+    /**
+     * Static method to generate a quiz of questions based on user choice
+     */
+    public static void generateQuiz (int quizSize){
+
+    }
+
 }
