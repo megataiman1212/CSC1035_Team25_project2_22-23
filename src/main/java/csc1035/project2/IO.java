@@ -505,6 +505,17 @@ public class IO {
      */
     public static void generateQuiz (){
 
+        System.out.println("Enter the desired size of quiz : ");
+
+        // Brings choice into scope
+        int quizSize = 0;
+        try {
+            quizSize= scanner.nextInt();
+        } catch (InputMismatchException exception) {
+            System.out.println("Data entered not an int");
+        }
+
+
     }
 
 }
