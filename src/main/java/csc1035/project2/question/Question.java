@@ -24,6 +24,14 @@ public abstract class Question {
         return question;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return question + '\n' + "-".repeat(question.length());

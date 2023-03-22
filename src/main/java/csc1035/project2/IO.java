@@ -4,6 +4,7 @@ import csc1035.project2.question.*;
 import csc1035.project2.quiz.Quiz;
 import csc1035.project2.quiz.QuizManager;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
@@ -350,8 +351,28 @@ public class IO {
     }
 
     public static void readQuestion(Quiz quiz) {
+        ArrayList<Question> a = new ArrayList<>(quiz.questions);
 
+        System.out.println("Id:" + questionManager.sendId(a));
+        System.out.println("Question:" + quiz.questions);
+
+        if (quiz.questions.isEmpty()) {
+            System.out.println("This quiz does not have any questions");
+        } else {
+            System.out.println("Enter the id of the question: ");
+            int id = scanner.nextInt();
+
+            Optional<Question> question = questionManager.findQuestionById(id);
+
+
+            if (question.isPresent()) {
+                System.out.println("Question found!");
+            } else {
+                System.out.println("No question named \"" + id + "\" found.");
+            }
+        }
     }
+
 
     public static void updateQuestion(Quiz quiz) {
 

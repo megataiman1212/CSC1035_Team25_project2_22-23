@@ -4,10 +4,7 @@ import csc1035.project2.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class QuestionManager {
     private final Set<Question> questions = new HashSet<>();
@@ -31,7 +28,6 @@ public class QuestionManager {
             session.close();
         }
     }
-
     public void createQuestion(Question question) {
         if (this.questions.add(question)) {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -80,6 +76,23 @@ public class QuestionManager {
 
     public Set<Question> getQuestions() {
         return this.questions;
+    }
+
+    public Optional<Question> findQuestionById(int id){
+        for (Question quest:questions){
+            if(Objects.equals(quest.getId() , id)){
+                return Optional.of(quest);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public ArrayList<Integer> sendId(ArrayList<Question> question){
+        ArrayList<Integer> ids = new ArrayList<>();
+        for(Question quest: question){
+                ids.add(quest.getId());
+        }
+        return ids;
     }
 
     public void clearQuestions() {
