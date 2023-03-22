@@ -44,6 +44,14 @@ public abstract class Question {
     }
 
     /**
+     * Get the topic
+     * @return the topic
+     */
+    public Topic getTopic() {
+        return topic;
+    }
+
+    /**
      * toString method to return question as a string with formatting
      * @return question as a string with formatting
      */
