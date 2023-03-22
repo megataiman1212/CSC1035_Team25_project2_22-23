@@ -4,9 +4,7 @@ import csc1035.project2.question.*;
 import csc1035.project2.quiz.Quiz;
 import csc1035.project2.quiz.QuizManager;
 
-import java.util.InputMismatchException;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -514,7 +512,72 @@ public class IO {
         } catch (InputMismatchException exception) {
             System.out.println("Data entered not an int");
         }
+    }
 
+    /**
+     * Method to create a list of questions that match a user's desired preferences and print to the console
+     */
+    public static void listSubsetOfQuestions(){
+        System.out.println("Select question type you would like to display");
+        System.out.println("----------------");
+        System.out.println("All, MCQ, SRQ");
+
+        String type = scanner.nextLine().trim().toLowerCase();
+
+        // Validate type input
+        while (type.isEmpty() ||
+                !Objects.equals(type, "all") ||
+                !Objects.equals(type, "mcq") ||
+                !Objects.equals(type, "srq")) {
+            System.out.println("Choice not recognised");
+            System.out.println("All, MCQ, SRQ");
+            System.out.println("Try again : ");
+            type = scanner.nextLine().trim().toLowerCase();
+        }
+
+        System.out.println("Select question topic you would like to display");
+        System.out.println("----------------");
+        System.out.println("    PROGRAMMING,\n" +
+                "    DATABASES,\n" +
+                "    ARCHITECTURE,\n" +
+                "    MATHS");
+
+        String topic = scanner.nextLine().trim().toLowerCase();
+
+        // Validate topic input
+        while (topic.isEmpty() ||
+                !Objects.equals(topic, "programming") ||
+                !Objects.equals(topic, "databases") ||
+                !Objects.equals(topic, "architecture")||
+                !Objects.equals(topic, "maths")) {
+
+            System.out.println("Choices cannot be empty");
+            System.out.println("All, MCQ, SRQ");
+            topic = scanner.nextLine().trim();
+        }
+
+        List<Question> outputList = new ArrayList<>();
+
+        Set<Question> questions = questionManager.getQuestions();
+        for (Question question : questions){
+            if (question.getTopic().name().equals(topic)){
+                if (type.equals("all")){
+                    outputList.add(question);
+                }
+                else if (type.equals("mcq")){
+                    if (question instanceof MultipleChoiceQuestion){
+                        outputList.add(question);
+                    }
+                }
+                else if (type.equals("srq")){
+                    if (question instanceof ShortResponseQuestion){
+                        outputList.add(question);
+                    }
+                }
+            }
+        }
+
+        System.out.println(outputList);
 
     }
 
