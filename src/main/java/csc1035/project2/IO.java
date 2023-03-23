@@ -36,7 +36,6 @@ public class IO {
     public static final Scanner scanner = new Scanner(System.in);
     public static final QuestionManager questionManager = new QuestionManager();
     public static final QuizManager quizManager = new QuizManager();
-    private ImportQuestion importQuestion;
 
 
     /**
@@ -580,6 +579,9 @@ public class IO {
         }
     }
 
+    private static void exportQuestions() {
+    }
+
     /**
      * Static method to export a list of question to a hardcoded file
      * Mirrors importQuestions
@@ -595,7 +597,6 @@ public class IO {
         fw.close();
     }
 
-}
 /**
  * Static method to import a list of questions from a hardcoded file
  * Mirrors exportQuestions
