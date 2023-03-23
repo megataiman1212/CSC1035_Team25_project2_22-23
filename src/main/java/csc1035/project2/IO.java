@@ -58,35 +58,51 @@ public class IO {
 
             switch (programChoice) {
                 case 1 -> {
+                    System.out.println("====================");
                     System.out.println("Manipulate Quiz Data");
+                    System.out.println("====================");
                     manipulateQuizData();
                 }
                 case 2 -> {
+                    System.out.println("========================");
                     System.out.println("Manipulate Question Data");
+                    System.out.println("========================");
                     manipulateQuestionData();
                 }
                 case 3 -> {
+                    System.out.println("==============");
                     System.out.println("Executing quiz");
+                    System.out.println("==============");
                     executeQuiz();
                 }
                 case 4 -> {
+                    System.out.println("===================================");
                     System.out.println("Execute Quiz of incorrect questions");
+                    System.out.println("===================================");
                     // @todo quiz of incorrect questions method
                 }
                 case 5 -> {
-                    System.out.println("Import or Export to file :");
+                    System.out.println("========================");
+                    System.out.println("Import or Export to file");
+                    System.out.println("========================");
                     importOrExport();
                 }
                 case 6 -> {
+                    System.out.println("============================================");
                     System.out.println("Print a subset of questions by type or topic");
+                    System.out.println("============================================");
                     listSubsetOfQuestions();
                 }
-                // @todo Exit Case
+                case 7 -> {
+                    System.out.println("===============");
+                    System.out.println("Exiting Program");
+                    System.out.println("===============");
+                    System.exit(0);
+                }
                 default -> {
                     System.out.println("=====================");
                     System.out.println("Choice Not Recognised");
                     System.out.println("=====================");
-                    System.exit(0);
                 }
             }
         }
@@ -105,6 +121,8 @@ public class IO {
         System.out.println("3 - Execute a quiz");
         System.out.println("4 - Execute quiz of questions previously answered incorrectly");
         System.out.println("5 - Import or Export a list of questions to a file");
+        System.out.println("6 - Print a subset of questions by type or topic");
+        System.out.println("7 - Exit Program");
         System.out.println("========================================");
     }
 
