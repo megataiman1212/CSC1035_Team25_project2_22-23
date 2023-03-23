@@ -36,6 +36,7 @@ public class IO {
     public static final QuestionManager questionManager = new QuestionManager();
     public static final QuizManager quizManager = new QuizManager();
 
+
     /**
      * Main method to provide the main run environment for the entire package.
      * Allow the user to select the functionality they would like to use.
@@ -431,7 +432,7 @@ public class IO {
         System.out.println("Question:" + quiz.questions);
 
         if (quiz.questions.isEmpty()) {
-            System.out.println("This quiz does not have any questions");
+            System.out.println("This quiz does not contain any questions");
         } else {
             System.out.println("Enter the id of the question: ");
             int id = scanner.nextInt();
@@ -451,13 +452,80 @@ public class IO {
      * Static method to prompt user input to update a question object and override database
      */
     public static void updateQuestion(Quiz quiz) {
+        ArrayList<Question> listOfQuestions = new ArrayList<>(quiz.questions);
 
+        System.out.println("Id:" + questionManager.sendId(listOfQuestions));
+        System.out.println("Question:" + quiz.questions);
+
+        if (quiz.questions.isEmpty()) {
+            System.out.println("This quiz does not contain any questions");
+        } else {
+            System.out.println("Enter the id of the question: ");
+            int id = scanner.nextInt();
+
+            Optional<Question> question = questionManager.findQuestionById(id);
+            scanner.nextLine();
+            if(question.isPresent()){
+
+
+                System.out.println("Enter your updates (or type same to keep it the same):");
+                System.out.println("==============================================================");
+
+                String updatePrompt;
+                Topic updateTopic;
+                Question question1 = question.get();
+
+                // Get question text
+                System.out.println("1. Enter the question prompt :");
+                updatePrompt = scanner.nextLine();
+                if(updatePrompt.equals("same")){
+                    updatePrompt = question1.getQuestion();
+                }
+
+                System.out.println("2. Enter the question topic (Programming, Databases, Architecture, Maths):");
+                String topicStr = scanner.nextLine().toUpperCase();
+                if(topicStr.equalsIgnoreCase("same")){
+                    updateTopic = question1.getTopic();
+                }
+
+                else{
+                    try{
+                        // Create the topic input to Topic type
+                        updateTopic = Topic.valueOf(topicStr);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Invalid topic");
+                        return;
+                    }
+                }
+                    questionManager.updateQuestion(question1,updatePrompt, updateTopic);
+            }
+        }
     }
 
     /**
      * Static method to prompt user input to delete a question from the database
      */
     public static void deleteQuestion(Quiz quiz) {
+        ArrayList<Question> listOfQuestions = new ArrayList<>(quiz.questions);
+
+        System.out.println("Id:" + questionManager.sendId(listOfQuestions));
+        System.out.println("Question:" + quiz.questions);
+
+        if(quiz.questions.isEmpty()){
+            System.out.println("This quiz does not contain any questions");
+        }else{
+            System.out.println("Enter the id of the question:");
+            int id = scanner.nextInt();
+
+            Optional<Question> question = questionManager.findQuestionById(id);
+            scanner.nextLine();
+
+            if(question.isPresent()){
+                Question question1 = question.get();
+                questionManager.deleteQuestion(question1);
+                System.out.println("Deleted successfully!");
+            }
+        }
 
     }
 

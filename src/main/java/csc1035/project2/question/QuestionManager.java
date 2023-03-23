@@ -85,15 +85,15 @@ public class QuestionManager {
 
     /**
      * Method to update an existing question in the database with a question object
-     *
-     * @param question question overriding the database question
      */
-    public void updateQuestion(Question question) {
+    public void updateQuestion(Question id, String newQuestion, Topic topic) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         try {
             session.beginTransaction();
-            session.update(question);
+            id.setQuestion(newQuestion);
+            id.setTopic(topic);
+            session.update(id);
             session.getTransaction().commit();
         } catch (HibernateException e) {
             session.getTransaction().rollback();
