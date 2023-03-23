@@ -577,6 +577,8 @@ public class IO {
      * Mirrors importQuestions
      */
     public static void exportQuestions(){
+        ExportQuestion exportQuestion = new ExportQuestion();
+
 
     }
 
