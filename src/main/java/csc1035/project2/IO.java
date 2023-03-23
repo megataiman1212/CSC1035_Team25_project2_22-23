@@ -77,7 +77,7 @@ public class IO {
                     importOrExport();
                 }
                 case 6 -> {
-                    System.out.println("SAMPLE 6");
+                    System.out.println("Print a subset of questions by type or topic");
                 }
                 // @todo Exit Case
                 default -> {
@@ -549,11 +549,17 @@ public class IO {
                 !Objects.equals(topic, "programming") ||
                 !Objects.equals(topic, "databases") ||
                 !Objects.equals(topic, "architecture")||
-                !Objects.equals(topic, "maths")) {
+                !Objects.equals(topic, "maths")||
+                !Objects.equals(topic, "all")) {
 
             System.out.println("Choices cannot be empty");
-            System.out.println("All, MCQ, SRQ");
-            topic = scanner.nextLine().trim();
+            System.out.println("    PROGRAMMING,\n" +
+                    "    Databases,\n" +
+                    "    Architecture,\n" +
+                    "    Maths" +
+                    "    All");
+            System.out.println("Try again : ");
+            topic = scanner.nextLine().trim().toLowerCase();
         }
 
         List<Question> outputList = new ArrayList<>();
@@ -561,6 +567,21 @@ public class IO {
         Set<Question> questions = questionManager.getQuestions();
         for (Question question : questions){
             if (question.getTopic().name().equals(topic)){
+                if (type.equals("all")){
+                    outputList.add(question);
+                }
+                else if (type.equals("mcq")){
+                    if (question instanceof MultipleChoiceQuestion){
+                        outputList.add(question);
+                    }
+                }
+                else if (type.equals("srq")){
+                    if (question instanceof ShortResponseQuestion){
+                        outputList.add(question);
+                    }
+                }
+            }
+            else if (topic.equals("all")){
                 if (type.equals("all")){
                     outputList.add(question);
                 }
