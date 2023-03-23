@@ -584,7 +584,8 @@ public class IO {
      * Static method to export a list of question to a hardcoded file
      * Mirrors importQuestions
      */
-    public static void exportQuestions (String line) throws IOException{
+    public static void exportQuestions (){
+        /*
         String path = "src/main/java/csc1035/project2/question/Question.csv";
         File file = new File(path);
         FileWriter fw = new FileWriter(file, true);
@@ -593,6 +594,42 @@ public class IO {
         bw.newLine();
         bw.close();
         fw.close();
+         */
+
+        System.out.println("Select the quiz you would like export.");
+        Optional<Quiz> quiz = readQuiz();
+        if (quiz.isEmpty()){return;}
+
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter("Question");
+            for (Question question : quiz.get().questions) {
+                if (question instanceof MultipleChoiceQuestion) {
+                    MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) question;
+                    writer.print("mcq,");
+                    writer.print(mcq.getQuestion() + ",");
+                    writer.print(mcq.getTopic() + ",");
+                    String[] choices = mcq.getWrongAnswers().toArray(new String[0]);
+                    for (String choice : choices) {
+                        writer.print(choice + ",");
+                    }
+                    writer.print(mcq.getAnswer() + ",");
+                } else if (question instanceof ShortResponseQuestion) {
+                    ShortResponseQuestion srq = (ShortResponseQuestion) question;
+                    writer.print("srq,");
+                    writer.print(srq.getQuestion() + ",");
+                    writer.print(srq.getTopic() + ",");
+                    writer.print(srq.getAnswer() + ",");
+                }
+                writer.println();
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
+
+
+
     }
 
 /**
@@ -614,12 +651,7 @@ public class IO {
 
                 Topic topic = Topic.valueOf(splitArray[1]);
 
-                Question question = new Question(splitArray[0], topic) {
-                    @Override
-                    public boolean execute() {
-                        return false;
-                    }
-                };
+                Question question = new Question(splitArray[0], topic) ;
                 questionList.add(question);
             }
         } catch (FileNotFoundException e) {
