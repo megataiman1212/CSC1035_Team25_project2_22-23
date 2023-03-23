@@ -410,6 +410,7 @@ public class IO {
     public static Optional<Question> readQuestion(Quiz quiz) {
 
         // @todo return question;
+         return Optional.empty();
     }
 
     /**
