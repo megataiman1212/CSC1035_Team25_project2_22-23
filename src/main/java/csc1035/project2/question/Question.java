@@ -24,7 +24,7 @@ public abstract class Question {
      * @param question the prompt for the question
      * @param topic the topic of the question
      */
-    public Question(String question, String topic) {
+    public Question(String question, Topic topic) {
         this.question = question;
         this.topic = topic;
     }
