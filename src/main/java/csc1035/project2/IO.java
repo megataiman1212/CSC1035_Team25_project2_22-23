@@ -85,18 +85,24 @@ public class IO {
                     // @todo quiz of incorrect questions method
                 }
                 case 5 -> {
+                    System.out.println("===================================================");
+                    System.out.println("Generate a quiz of specified length, topic and type");
+                    System.out.println("===================================================");
+                    generateQuiz();
+                }
+                case 6 -> {
                     System.out.println("========================");
                     System.out.println("Import or Export to file");
                     System.out.println("========================");
                     importOrExport();
                 }
-                case 6 -> {
+                case 7 -> {
                     System.out.println("============================================");
                     System.out.println("Print a subset of questions by type or topic");
                     System.out.println("============================================");
                     listSubsetOfQuestions();
                 }
-                case 7 -> {
+                case 8 -> {
                     System.out.println("===============");
                     System.out.println("Exiting Program");
                     System.out.println("===============");
@@ -123,9 +129,10 @@ public class IO {
         System.out.println("2 - Create, Read, Update or delete a question");
         System.out.println("3 - Execute a quiz");
         System.out.println("4 - Execute quiz of questions previously answered incorrectly");
-        System.out.println("5 - Import or Export a list of questions to a file");
-        System.out.println("6 - Print a subset of questions by type or topic");
-        System.out.println("7 - Exit Program");
+        System.out.println("5 - Generate a quiz of specified length, topic and type");
+        System.out.println("6 - Import or Export a list of questions to a file");
+        System.out.println("7 - Print a subset of questions by type or topic");
+        System.out.println("8 - Exit Program");
         System.out.println("========================================");
     }
 
@@ -648,7 +655,119 @@ public class IO {
         } catch (InputMismatchException exception) {
             System.out.println("Data entered not an int");
         }
+
+        System.out.println("Select question type you would like to test yourself with");
+        System.out.println("----------------");
+        System.out.println("All, MCQ, SRQ");
+
+        String type = scanner.nextLine().trim().toLowerCase();
+
+        // Validate type input
+        while (type.isEmpty() ||
+                (!Objects.equals(type, "all") &&
+                        !Objects.equals(type, "mcq") &&
+                        !Objects.equals(type, "srq"))) {
+            System.out.println("Choice not recognised");
+            System.out.println("All, MCQ, SRQ");
+            System.out.println("Try again : ");
+            type = scanner.nextLine().trim().toLowerCase();
+        }
+
+        System.out.println("Select question topic you would like to test yourself on");
+        System.out.println("----------------");
+        System.out.println("    PROGRAMMING,\n" +
+                "    DATABASES,\n" +
+                "    ARCHITECTURE,\n" +
+                "    MATHS");
+
+        /* @todo add incorrect question functionality
+        System.out.println("Would you like to only test yourself using questions you have answered incorrectly");
+        System.out.println("----------------");
+        System.out.println("Yes, No");
+
+        String incorrectOnly = scanner.nextLine().trim().toLowerCase();
+
+        while (type.isEmpty() || (!Objects.equals(type, "yes") && !Objects.equals(type, "no"))) {
+            System.out.println("Choice not recognised");
+            System.out.println("Yes, No");
+            System.out.println("Try again : ");
+            incorrectOnly = scanner.nextLine().trim().toLowerCase();
+        }
+
+         */
+
+
+        String topic = scanner.nextLine().trim().toLowerCase();
+
+        // Validate topic input
+        while (topic.isEmpty() ||
+                (!Objects.equals(topic, "programming") &&
+                        !Objects.equals(topic, "databases") &&
+                        !Objects.equals(topic, "architecture")&&
+                        !Objects.equals(topic, "maths")&&
+                        !Objects.equals(topic, "all"))) {
+
+            System.out.println("Choices cannot be empty");
+            System.out.println("    PROGRAMMING,\n" +
+                    "    Databases,\n" +
+                    "    Architecture,\n" +
+                    "    Maths" +
+                    "    All");
+            System.out.println("Try again : ");
+            topic = scanner.nextLine().trim().toLowerCase();
+        }
+
+
+
+
+        List<Question> outputList = new ArrayList<>();
+
+        Set<Question> questions = questionManager.getQuestions();
+        for (Question question : questions){
+            if (question.getTopic().name().equals(topic)){
+                switch (type) {
+                    case "all" -> outputList.add(question);
+                    case "mcq" -> {
+                        if (question instanceof MultipleChoiceQuestion) {
+                            outputList.add(question);
+                        }
+                    }
+                    case "srq" -> {
+                        if (question instanceof ShortResponseQuestion) {
+                            outputList.add(question);
+                        }
+                    }
+                }
+            }
+            else if (topic.equals("all")){
+                switch (type) {
+                    case "all" -> outputList.add(question);
+                    case "mcq" -> {
+                        if (question instanceof MultipleChoiceQuestion) {
+                            outputList.add(question);
+                        }
+                    }
+                    case "srq" -> {
+                        if (question instanceof ShortResponseQuestion) {
+                            outputList.add(question);
+                        }
+                    }
+                }
+            }
+        }
+
+        Random rand = new Random();
+        List<Question> questionList = new ArrayList<>();
+        for (int i = 0; i < quizSize; i++) {
+            questionList.add(outputList.get(rand.nextInt(outputList.size())));
+        }
+        Quiz q = new Quiz(null, questionList.get(quizSize));
+        q.execute();
     }
+
+    // =================================================================
+    // =================================================================
+    // =================================================================
 
     /**
      * Method to create a list of questions that match a user's desired preferences and print to the console
