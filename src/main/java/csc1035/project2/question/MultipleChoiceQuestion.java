@@ -41,6 +41,22 @@ public class MultipleChoiceQuestion extends Question {
     public MultipleChoiceQuestion() {
     }
 
+    public Collection<String> getWrongAnswers() {
+        return wrongAnswers;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public void setWrongAnswers(Collection<String> wrongAnswers) {
+        this.wrongAnswers = wrongAnswers;
+    }
+
     /**
      * Method to execute the main prompt string for the question, implemented from question.java
      * @return @todo what does this return

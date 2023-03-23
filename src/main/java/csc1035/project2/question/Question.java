@@ -43,12 +43,20 @@ public abstract class Question {
         return question;
     }
 
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     /**
      * Get the topic
      * @return the topic
      */
     public Topic getTopic() {
         return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 
     public int getId() {
