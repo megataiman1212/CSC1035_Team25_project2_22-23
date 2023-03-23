@@ -559,9 +559,9 @@ public class IO {
 
         // Validate type input
         while (type.isEmpty() ||
-                !Objects.equals(type, "all") &&
+                (!Objects.equals(type, "all") &&
                 !Objects.equals(type, "mcq") &&
-                !Objects.equals(type, "srq")) {
+                !Objects.equals(type, "srq"))) {
             System.out.println("Choice not recognised");
             System.out.println("All, MCQ, SRQ");
             System.out.println("Try again : ");
@@ -579,11 +579,11 @@ public class IO {
 
         // Validate topic input
         while (topic.isEmpty() ||
-                !Objects.equals(topic, "programming") &&
+                (!Objects.equals(topic, "programming") &&
                 !Objects.equals(topic, "databases") &&
                 !Objects.equals(topic, "architecture")&&
                 !Objects.equals(topic, "maths")&&
-                !Objects.equals(topic, "all")) {
+                !Objects.equals(topic, "all"))) {
 
             System.out.println("Choices cannot be empty");
             System.out.println("    PROGRAMMING,\n" +
