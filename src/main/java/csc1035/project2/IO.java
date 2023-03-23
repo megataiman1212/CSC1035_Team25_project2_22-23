@@ -492,12 +492,8 @@ public class IO {
             System.out.println("Data entered not an int");
         }
         switch (importOrExportChoice){
-            case 1-> {
-                importQuestions();
-            }
-            case 2 -> {
-                exportQuestions();
-            }
+            case 1-> importQuestions();
+            case 2 -> exportQuestions();
             default -> {
                 System.out.println("=====================");
                 System.out.println("Choice Not Recognised");
@@ -604,32 +600,32 @@ public class IO {
         Set<Question> questions = questionManager.getQuestions();
         for (Question question : questions){
             if (question.getTopic().name().equals(topic)){
-                if (type.equals("all")){
-                    outputList.add(question);
-                }
-                else if (type.equals("mcq")){
-                    if (question instanceof MultipleChoiceQuestion){
-                        outputList.add(question);
+                switch (type) {
+                    case "all" -> outputList.add(question);
+                    case "mcq" -> {
+                        if (question instanceof MultipleChoiceQuestion) {
+                            outputList.add(question);
+                        }
                     }
-                }
-                else if (type.equals("srq")){
-                    if (question instanceof ShortResponseQuestion){
-                        outputList.add(question);
+                    case "srq" -> {
+                        if (question instanceof ShortResponseQuestion) {
+                            outputList.add(question);
+                        }
                     }
                 }
             }
             else if (topic.equals("all")){
-                if (type.equals("all")){
-                    outputList.add(question);
-                }
-                else if (type.equals("mcq")){
-                    if (question instanceof MultipleChoiceQuestion){
-                        outputList.add(question);
+                switch (type) {
+                    case "all" -> outputList.add(question);
+                    case "mcq" -> {
+                        if (question instanceof MultipleChoiceQuestion) {
+                            outputList.add(question);
+                        }
                     }
-                }
-                else if (type.equals("srq")){
-                    if (question instanceof ShortResponseQuestion){
-                        outputList.add(question);
+                    case "srq" -> {
+                        if (question instanceof ShortResponseQuestion) {
+                            outputList.add(question);
+                        }
                     }
                 }
             }
