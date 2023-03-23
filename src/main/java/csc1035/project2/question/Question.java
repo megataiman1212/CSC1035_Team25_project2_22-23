@@ -74,5 +74,6 @@ public abstract class Question {
 
     public abstract boolean execute();
 
+    public abstract String getAnswer();
 }
 
