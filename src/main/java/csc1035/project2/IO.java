@@ -35,6 +35,7 @@ public class IO {
     public static final Scanner scanner = new Scanner(System.in);
     public static final QuestionManager questionManager = new QuestionManager();
     public static final QuizManager quizManager = new QuizManager();
+    private ImportQuestion importQuestion;
 
     /**
      * Main method to provide the main run environment for the entire package.
