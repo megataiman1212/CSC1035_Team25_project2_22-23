@@ -105,7 +105,7 @@ public class Quiz {
             System.out.println("Try again : ");
             reportChoice = scanner.nextLine().trim().toLowerCase();
         }
-        if (reportChoice.equals("yes")){ generateReport(questions, userAnswers);}
+        if (reportChoice.equals("yes")){ System.out.println(generateReport(questions, userAnswers));}
     }
 
     /**
