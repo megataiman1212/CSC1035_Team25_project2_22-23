@@ -612,7 +612,9 @@ public class IO {
             while ((line = bufferedReader.readLine()) != null) {
                 String [] splitArray = line.split(splitCsvBy);
 
-                Question question = new Question(splitArray[0], splitArray[1]) {
+                Topic topic = Topic.valueOf(splitArray[1]);
+
+                Question question = new Question(splitArray[0], topic) {
                     @Override
                     public boolean execute() {
                         return false;
