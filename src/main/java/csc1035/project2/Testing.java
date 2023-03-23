@@ -44,7 +44,7 @@ public class Testing {
         // ==================
         IO.createQuestion(q);
         System.out.println("===================== Reading Question ==========================");
-        System.out.println(IO.readQuestion(q));
+        IO.readQuestion(q);
         System.out.println("=================================================================");
         IO.updateQuestion(q);
         IO.deleteQuestion(q);

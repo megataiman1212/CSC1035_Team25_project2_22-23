@@ -306,7 +306,7 @@ public class IO {
             }
             case 2 -> {
                 System.out.println("Read Question : ");
-                System.out.println(readQuestion(quiz));
+                readQuestion(quiz);
             }
             case 3 -> {
                 System.out.println("Edit/Update Question : ");
@@ -422,13 +422,29 @@ public class IO {
     }
 
     /**
-     * Static method to optionally return a question from an inputted string based on @todo
-     * @return @todo
+     * Static method to optionally return a question from an inputted string based on question id
      */
-    public static Optional<Question> readQuestion(Quiz quiz) {
+    public static void readQuestion(Quiz quiz) {
+        ArrayList<Question> a = new ArrayList<>(quiz.questions);
 
-        // @todo return question;
-         return Optional.empty();
+        System.out.println("Id:" + questionManager.sendId(a));
+        System.out.println("Question:" + quiz.questions);
+
+        if (quiz.questions.isEmpty()) {
+            System.out.println("This quiz does not have any questions");
+        } else {
+            System.out.println("Enter the id of the question: ");
+            int id = scanner.nextInt();
+
+            Optional<Question> question = questionManager.findQuestionById(id);
+
+
+            if (question.isPresent()) {
+                System.out.println("Question found!");
+            } else {
+                System.out.println("No question named \"" + id + "\" found.");
+            }
+        }
     }
 
     /**

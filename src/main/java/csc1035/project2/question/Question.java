@@ -51,6 +51,10 @@ public abstract class Question {
         return topic;
     }
 
+    public int getId() {
+        return id;
+    }
+
     /**
      * toString method to return question as a string with formatting
      * @return question as a string with formatting
@@ -61,5 +65,6 @@ public abstract class Question {
     }
 
     public abstract boolean execute();
+
 }
 
