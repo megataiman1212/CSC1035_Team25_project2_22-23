@@ -4,6 +4,7 @@ import csc1035.project2.question.*;
 import csc1035.project2.quiz.Quiz;
 import csc1035.project2.quiz.QuizManager;
 
+import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -576,22 +577,51 @@ public class IO {
      * Static method to export a list of question to a hardcoded file
      * Mirrors importQuestions
      */
-    public static void exportQuestions(){
-        ExportQuestion exportQuestion = new ExportQuestion();
-
-
+    public static void exportQuestions (String line) throws IOException{
+        String path = "src/main/java/csc1035/project2/question/Question.csv";
+        File file = new File(path);
+        FileWriter fw = new FileWriter(file, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(line);
+        bw.newLine();
+        bw.close();
+        fw.close();
     }
 
-    /**
-     * Static method to import a list of questions from a hardcoded file
-     * Mirrors exportQuestions
-     */
-    public static void importQuestions(){
-        ImportQuestion importQuestion = new ImportQuestion();
-        System.out.print(importQuestion.importQuestionFromFile());
+}
+/**
+ * Static method to import a list of questions from a hardcoded file
+ * Mirrors exportQuestions
+ */
+    public static List<Question> importQuestions(){
+        List<Question> questionList = new ArrayList<>();
+        String splitCsvBy;
+        String filePath = "src/main/java/csc1035/project2/question/Question.csv";
+        splitCsvBy = ",";
 
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+            String line = "";
+            line = bufferedReader.readLine();
+            while ((line = bufferedReader.readLine()) != null) {
+                String [] splitArray = line.split(splitCsvBy);
+
+                Question question = new Question(splitArray[0], splitArray[1]) {
+                    @Override
+                    public boolean execute() {
+                        return false;
+                    }
+                };
+                questionList.add(question);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return questionList;
     }
-
 
     // =================================================================
     // =================================================================
