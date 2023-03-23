@@ -1,19 +1,16 @@
 package csc1035.project2;
 
 import csc1035.project2.question.MultipleChoiceQuestion;
-import csc1035.project2.question.Question;
 import csc1035.project2.question.ShortResponseQuestion;
 import csc1035.project2.question.Topic;
 import csc1035.project2.quiz.Quiz;
-import org.hibernate.Session;
 
-import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Main {
+public class Testing {
     public static void main(String[] args) {
-        // @TODO Delete this! - It's just a demo of how to create the questions and execute them
 
+        // Initialising demo questions
         MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(
                 "Select 'alpha' for correct, anything else for incorrect",
                 Topic.PROGRAMMING,
@@ -26,20 +23,48 @@ public class Main {
                 Pattern.compile("^alpha$", Pattern.CASE_INSENSITIVE)
         );
 
+        // Initialising demo quiz with demo questions
         Quiz q = new Quiz("Demo Quiz", srq, srq, mcq, mcq);
-        //q.execute();
 
-        ///////////
+        // Initialise quiz execute process
+        q.execute();
+
 
         IO.quizManager.findQuizByName("demo quiz").ifPresent(quiz -> System.out.println(quiz.questions.size()));
 
+        System.out.println("=================================================================");
+
+        // =================================================================
+        // ===================== Testing methods ===========================
+        // =================================================================
+        IO.createQuiz();
+        IO.readQuiz();
+        IO.updateQuiz();
+        IO.deleteQuiz();
+        // ==================
+        IO.createQuestion(q);
+        System.out.println("===================== Reading Question ==========================");
+        System.out.println(IO.readQuestion(q));
+        System.out.println("=================================================================");
+        IO.updateQuestion(q);
+        IO.deleteQuestion(q);
+        System.out.println("=================================================================");
+
+
+
+        /*
+        Commented in order to prevent all questions from being cleared accidentally
+        ----
         System.out.println("\nClearing Questions\n");
         IO.questionManager.clearQuestions();
         System.out.println("\nQuestions Cleared!\n");
+         */
 
+        /*
+        @todo delete, outdated test
         IO.questionManager.createQuestion(mcq);
         IO.questionManager.createQuestion(srq);
-
         IO.quizManager.createQuiz(q);
+         */
     }
 }

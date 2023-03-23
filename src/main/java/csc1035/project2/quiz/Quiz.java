@@ -5,6 +5,15 @@ import csc1035.project2.question.Question;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Class to represent a quiz and all questions that belong to it
+ * Contains fields for:
+ * id, quizName, questions
+ * Contains methods for:
+ * - Method to execute the list of questions, by displaying the question prompt
+ *
+ * @version 1
+ */
 @Entity
 public class Quiz {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -15,6 +24,11 @@ public class Quiz {
     private int id;
     private String quizName;
 
+    /**
+     * Constructor for Quiz that takes a list of questions and a quizName
+     * @param quizName the name of the quiz
+     * @param questions the questions to be added to the quiz
+     */
     public Quiz(String quizName, Question... questions) {
         this.quizName = quizName;
         this.questions.addAll(Arrays.asList(questions));
@@ -27,22 +41,25 @@ public class Quiz {
         this.quizName = "Unnamed Quiz";
     }
 
-    /*
-    public String toString(){
-        return " <== " + quizName + " ==> " +
-                questions.toString();
-
-    }
+    /**
+     * Get the quizName
+     * @return the quizName
      */
-
     public String getQuizName() {
         return quizName;
     }
 
+    /**
+     * Set the quizName
+     * @param name name of the quiz
+     */
     public void setQuizName(String name) {
         this.quizName = name;
     }
 
+    /**
+     * Method to execute the list of questions, by displaying the question prompt
+     */
     public void execute() {
         var questions = new ArrayList<>(this.questions);
         Collections.shuffle(questions);
@@ -70,6 +87,8 @@ public class Quiz {
         }
 
         System.out.printf("You got %s/%s right!%n", correct, questions.size());
+
+        // @ todo allow the user to see questions they got wrong/see the answers to mark it themselves
     }
 
     /**

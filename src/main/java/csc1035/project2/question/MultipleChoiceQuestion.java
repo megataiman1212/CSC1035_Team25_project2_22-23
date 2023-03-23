@@ -5,6 +5,15 @@ import csc1035.project2.IO;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Subclass of Question to represent a MultipleChoiceQuestion
+ * Contains fields for:
+ * question, topic, correctAnswer, wrongAnswers
+ * Contains methods for:
+ * - Method to execute the main prompt string for the question
+ *
+ * @version 1
+ */
 @Entity
 @PrimaryKeyJoinColumn
 public class MultipleChoiceQuestion extends Question {
@@ -12,15 +21,30 @@ public class MultipleChoiceQuestion extends Question {
     protected Collection<String> wrongAnswers;
     protected String correctAnswer;
 
+    /**
+     * Constructor for creating a MultipleChoiceQuestion instance
+     *
+     * @param question the prompt for the question
+     * @param topic the topic for the question
+     * @param correctAnswer the correct answer for the question
+     * @param wrongAnswers a list of wrong answers for the question
+     */
     public MultipleChoiceQuestion(String question, Topic topic, String correctAnswer, String... wrongAnswers) {
         super(question, topic);
         this.correctAnswer = correctAnswer;
         this.wrongAnswers = List.of(wrongAnswers);
     }
 
+    /**
+     * Default empty constructor
+     */
     public MultipleChoiceQuestion() {
     }
 
+    /**
+     * Method to execute the main prompt string for the question, implemented from question.java
+     * @return @todo what does this return
+     */
     public boolean execute() {
         // Set up answers
         ArrayList<String> allAnswers = new ArrayList<>(wrongAnswers);
