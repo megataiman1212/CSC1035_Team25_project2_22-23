@@ -579,8 +579,6 @@ public class IO {
         }
     }
 
-    private static void exportQuestions() {
-    }
 
     /**
      * Static method to export a list of question to a hardcoded file
