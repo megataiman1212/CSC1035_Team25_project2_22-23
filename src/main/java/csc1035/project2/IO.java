@@ -585,6 +585,8 @@ public class IO {
      * Mirrors exportQuestions
      */
     public static void importQuestions(){
+        ImportQuestion importQuestion = new ImportQuestion();
+        System.out.print(importQuestion.importQuestionFromFile());
 
     }
 
