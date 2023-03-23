@@ -35,6 +35,7 @@ public class IO {
     public static final Scanner scanner = new Scanner(System.in);
     public static final QuestionManager questionManager = new QuestionManager();
     public static final QuizManager quizManager = new QuizManager();
+    private ImportQuestion importQuestion;
 
 
     /**
@@ -560,12 +561,8 @@ public class IO {
             System.out.println("Data entered not an int");
         }
         switch (importOrExportChoice){
-            case 1-> {
-                importQuestions();
-            }
-            case 2 -> {
-                exportQuestions();
-            }
+            case 1-> importQuestions();
+            case 2 -> exportQuestions();
             default -> {
                 System.out.println("=====================");
                 System.out.println("Choice Not Recognised");
@@ -631,9 +628,9 @@ public class IO {
 
         // Validate type input
         while (type.isEmpty() ||
-                !Objects.equals(type, "all") ||
-                !Objects.equals(type, "mcq") ||
-                !Objects.equals(type, "srq")) {
+                (!Objects.equals(type, "all") &&
+                !Objects.equals(type, "mcq") &&
+                !Objects.equals(type, "srq"))) {
             System.out.println("Choice not recognised");
             System.out.println("All, MCQ, SRQ");
             System.out.println("Try again : ");
@@ -651,11 +648,11 @@ public class IO {
 
         // Validate topic input
         while (topic.isEmpty() ||
-                !Objects.equals(topic, "programming") ||
-                !Objects.equals(topic, "databases") ||
-                !Objects.equals(topic, "architecture")||
-                !Objects.equals(topic, "maths")||
-                !Objects.equals(topic, "all")) {
+                (!Objects.equals(topic, "programming") &&
+                !Objects.equals(topic, "databases") &&
+                !Objects.equals(topic, "architecture")&&
+                !Objects.equals(topic, "maths")&&
+                !Objects.equals(topic, "all"))) {
 
             System.out.println("Choices cannot be empty");
             System.out.println("    PROGRAMMING,\n" +
@@ -672,32 +669,32 @@ public class IO {
         Set<Question> questions = questionManager.getQuestions();
         for (Question question : questions){
             if (question.getTopic().name().equals(topic)){
-                if (type.equals("all")){
-                    outputList.add(question);
-                }
-                else if (type.equals("mcq")){
-                    if (question instanceof MultipleChoiceQuestion){
-                        outputList.add(question);
+                switch (type) {
+                    case "all" -> outputList.add(question);
+                    case "mcq" -> {
+                        if (question instanceof MultipleChoiceQuestion) {
+                            outputList.add(question);
+                        }
                     }
-                }
-                else if (type.equals("srq")){
-                    if (question instanceof ShortResponseQuestion){
-                        outputList.add(question);
+                    case "srq" -> {
+                        if (question instanceof ShortResponseQuestion) {
+                            outputList.add(question);
+                        }
                     }
                 }
             }
             else if (topic.equals("all")){
-                if (type.equals("all")){
-                    outputList.add(question);
-                }
-                else if (type.equals("mcq")){
-                    if (question instanceof MultipleChoiceQuestion){
-                        outputList.add(question);
+                switch (type) {
+                    case "all" -> outputList.add(question);
+                    case "mcq" -> {
+                        if (question instanceof MultipleChoiceQuestion) {
+                            outputList.add(question);
+                        }
                     }
-                }
-                else if (type.equals("srq")){
-                    if (question instanceof ShortResponseQuestion){
-                        outputList.add(question);
+                    case "srq" -> {
+                        if (question instanceof ShortResponseQuestion) {
+                            outputList.add(question);
+                        }
                     }
                 }
             }
