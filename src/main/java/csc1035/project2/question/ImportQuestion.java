@@ -9,7 +9,7 @@ import java.util.List;
 public class ImportQuestion {
     List<Question> questionList = new ArrayList<>();
 
-    public List<Question>  importQuestionFromFile() {
+    public List<Question> importQuestionFromFile() {
         String splitCsvBy;
         String filePath = //will need to be updated;
         splitCsvBy = ",";
