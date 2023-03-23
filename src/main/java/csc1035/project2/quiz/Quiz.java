@@ -62,8 +62,8 @@ public class Quiz {
      */
     public void execute() {
         var questions = new ArrayList<>(this.questions);
+        var userAnswers = new ArrayList<Boolean>();
         Collections.shuffle(questions);
-        int correct = 0;
 
         String title = "Quiz - " + questions.size() + " questions";
         System.out.println(title);
@@ -78,17 +78,34 @@ public class Quiz {
 
             if (question.execute()) {
                 System.out.println("Correct!");
-                correct++;
+
+                // Add a boolean value to list signifying correct answer
+                userAnswers.add(true);
+
             } else {
                 System.out.println("Wrong");
+
+                // Add a boolean value to list signifying incorrect answer
+                userAnswers.add(false);
             }
 
             System.out.println();
         }
 
-        System.out.printf("You got %s/%s right!%n", correct, questions.size());
+        System.out.println("Would you like to see a report on your results");
+        System.out.println("----------------");
+        System.out.println("Yes, No");
 
-        // @ todo allow the user to see questions they got wrong/see the answers to mark it themselves
+        Scanner scanner = new Scanner(System.in);
+        String reportChoice = scanner.nextLine().trim().toLowerCase();
+
+        while (reportChoice.isEmpty() || (!Objects.equals(reportChoice, "yes") && !Objects.equals(reportChoice, "no"))) {
+            System.out.println("Choice not recognised");
+            System.out.println("Yes, No");
+            System.out.println("Try again : ");
+            reportChoice = scanner.nextLine().trim().toLowerCase();
+        }
+        if (reportChoice.equals("yes")){ generateReport(questions, userAnswers);}
     }
 
     /**
@@ -98,5 +115,22 @@ public class Quiz {
      */
     public void addQuestion(Question question) {
         questions.add(question);
+    }
+
+    public String generateReport(List<Question> questions, List<Boolean> answers) {
+        int correctCount = 0;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Quiz Results\n\n");
+        for (int i = 0; i < questions.size(); i++) {
+            sb.append("Question ").append(i + 1).append(": ").append(questions.get(i).getQuestion()).append("\n");
+            sb.append("Your answer: ").append(answers.get(i) ? "Correct" : "Incorrect").append("\n");
+            sb.append("Correct answer: ").append(questions.get(i).getAnswer()).append("\n\n");
+            if (answers.get(i)) {
+                correctCount++;
+            }
+        }
+        double percentageScore = (double) correctCount / questions.size() * 100;
+        sb.append("Final score: ").append(String.format("%.2f", percentageScore)).append("%\n");
+        return sb.toString();
     }
 }
