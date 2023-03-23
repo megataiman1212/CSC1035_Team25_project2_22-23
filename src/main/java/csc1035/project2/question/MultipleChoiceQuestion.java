@@ -45,7 +45,8 @@ public class MultipleChoiceQuestion extends Question {
         return wrongAnswers;
     }
 
-    public String getCorrectAnswer() {
+    @Override
+    public String getAnswer() {
         return correctAnswer;
     }
 

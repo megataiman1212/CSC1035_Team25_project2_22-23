@@ -46,6 +46,11 @@ public class ShortResponseQuestion extends Question {
         this.pattern = pattern;
     }
 
+    @Override
+    public String getAnswer() {
+        return pattern.pattern();
+    }
+
     /**
      * Method to return a string value for pattern
      *
