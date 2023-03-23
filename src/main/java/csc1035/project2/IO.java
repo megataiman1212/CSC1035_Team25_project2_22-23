@@ -755,6 +755,15 @@ public class IO {
             }
         }
 
+        /*
+        if (incorrectOnly.equals("yes")){
+            for (Question question : outputList) {
+                if (question.getIncorrect
+           }
+        }
+
+         */
+
         Random rand = new Random();
         List<Question> questionList = new ArrayList<>();
         for (int i = 0; i < quizSize; i++) {
