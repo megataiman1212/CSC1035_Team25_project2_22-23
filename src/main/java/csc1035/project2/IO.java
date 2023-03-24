@@ -571,7 +571,7 @@ public class IO {
             System.out.println("Data entered not an int");
         }
         switch (importOrExportChoice){
-            //case 1-> importQuestions();
+            case 1-> quizManager.createQuiz(importQuestions());
             case 2 -> exportQuestions();
             default -> {
                 System.out.println("=====================");
@@ -588,24 +588,10 @@ public class IO {
      * Mirrors importQuestions
      */
     public static void exportQuestions (){
-        /*
-        String path = "src/main/java/csc1035/project2/question/Question.csv";
-        File file = new File(path);
-        FileWriter fw = new FileWriter(file, true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(line);
-        bw.newLine();
-        bw.close();
-        fw.close();
-        */
-
-
-
         System.out.println("Select the quiz you would like export.");
         Optional<Quiz> quiz = readQuiz();
         if (quiz.isEmpty()){return;}
 
-        // File file = new File("Question");
         PrintWriter writer = null;
         try {
 
@@ -643,8 +629,49 @@ public class IO {
  * Static method to import a list of questions from a hardcoded file
  * Mirrors exportQuestions
  */
-/*
-    public static List<Question> importQuestions(){
+    public static Quiz importQuestions(){
+        BufferedReader reader = null;
+        Quiz quiz = new Quiz("ImportedQuiz");
+        try {
+            reader = new BufferedReader(new FileReader("Question"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] tokens = line.split(",");
+                String questionType = tokens[0];
+                String questionPrompt = tokens[1];
+                Topic questionTopic = Topic.valueOf(tokens[2]);
+                if (questionType.equalsIgnoreCase("mcq")) {
+                    String[] wrongAnswers = new String[4];
+                    for (int i = 0; i < 4; i++) {
+                        wrongAnswers[i] = tokens[i + 3];
+                    }
+                    ArrayList<String> wrongAnswerList = new ArrayList<>(Arrays.asList(wrongAnswers));
+                    String correctChoice = String.valueOf(Integer.parseInt(tokens[7]));
+                    MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(questionPrompt, questionTopic, correctChoice, String.valueOf(wrongAnswerList));
+                    quiz.addQuestion(mcq);
+                } else if (questionType.equalsIgnoreCase("srq")) {
+                    String patternString = tokens[3];
+                    Pattern pattern = Pattern.compile(patternString);
+                    ShortResponseQuestion srq = new ShortResponseQuestion(questionPrompt, questionTopic, pattern);
+                    quiz.addQuestion(srq);
+                }
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return quiz;
+        /*
         List<Question> questionList = new ArrayList<>();
         String splitCsvBy;
         String filePath = "src/main/java/csc1035/project2/question/Question.csv";
@@ -669,9 +696,8 @@ public class IO {
         }
 
         return questionList;
+        */
     }
-
-         */
 
     // =================================================================
     // =================================================================
