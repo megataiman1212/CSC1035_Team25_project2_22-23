@@ -671,32 +671,6 @@ public class IO {
             }
         }
         return quiz;
-        /*
-        List<Question> questionList = new ArrayList<>();
-        String splitCsvBy;
-        String filePath = "src/main/java/csc1035/project2/question/Question.csv";
-        splitCsvBy = ",";
-
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
-            String line = "";
-            line = bufferedReader.readLine();
-            while ((line = bufferedReader.readLine()) != null) {
-                String [] splitArray = line.split(splitCsvBy);
-
-                Topic topic = Topic.valueOf(splitArray[1]);
-
-                Question question = new Question(splitArray[0], topic) ;
-                questionList.add(question);
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return questionList;
-        */
     }
 
     // =================================================================
