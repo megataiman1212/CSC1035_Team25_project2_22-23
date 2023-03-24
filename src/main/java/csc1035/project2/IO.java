@@ -56,6 +56,7 @@ public class IO {
                 programChoice = scanner.nextInt();
             } catch (InputMismatchException exception) {
                 System.out.println("Data entered not an int");
+                System.exit(0);
             }
 
             switch (programChoice) {
