@@ -61,7 +61,7 @@ public class Quiz {
      * Method to execute the list of questions, by displaying the question prompt
      */
     public void execute() {
-        var questions = new ArrayList<>(this.questions);
+        List<Question> questions = new ArrayList<>(this.questions);
         var userAnswers = new ArrayList<Boolean>();
         Collections.shuffle(questions);
 
@@ -95,6 +95,7 @@ public class Quiz {
         System.out.println("Would you like to see a report on your results");
         System.out.println("----------------");
         System.out.println("Yes, No");
+        System.out.println();
 
         Scanner scanner = new Scanner(System.in);
         String reportChoice = scanner.nextLine().trim().toLowerCase();
