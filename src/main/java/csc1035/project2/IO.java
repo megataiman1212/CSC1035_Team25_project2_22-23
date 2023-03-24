@@ -587,7 +587,7 @@ public class IO {
      * Mirrors importQuestions
      */
     public static void exportQuestions (){
-        /*
+
         String path = "src/main/java/csc1035/project2/question/Question.csv";
         File file = new File(path);
         FileWriter fw = new FileWriter(file, true);
@@ -596,13 +596,14 @@ public class IO {
         bw.newLine();
         bw.close();
         fw.close();
-         */
 
+
+        /*
         System.out.println("Select the quiz you would like export.");
         Optional<Quiz> quiz = readQuiz();
         if (quiz.isEmpty()){return;}
 
-        //File file = new File("Question");
+        // File file = new File("Question");
         PrintWriter writer = null;
         try {
 
@@ -631,6 +632,7 @@ public class IO {
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         }
+         */
 
 
 
@@ -640,7 +642,6 @@ public class IO {
  * Static method to import a list of questions from a hardcoded file
  * Mirrors exportQuestions
  */
-    /*
     public static List<Question> importQuestions(){
         List<Question> questionList = new ArrayList<>();
         String splitCsvBy;
@@ -667,7 +668,6 @@ public class IO {
 
         return questionList;
     }
-     */
 
     // =================================================================
     // =================================================================
