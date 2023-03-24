@@ -642,12 +642,16 @@ public class IO {
                 Topic questionTopic = Topic.valueOf(tokens[2]);
                 if (questionType.equalsIgnoreCase("mcq")) {
                     String[] wrongAnswers = new String[4];
-                    for (int i = 0; i < 4; i++) {
-                        wrongAnswers[i] = tokens[i + 3];
+                    for (int i = 0; i < (tokens.length-2); i++) {
+                        wrongAnswers[i] = tokens[i + 2];
                     }
+
                     ArrayList<String> wrongAnswerList = new ArrayList<>(Arrays.asList(wrongAnswers));
-                    String correctChoice = String.valueOf(Integer.parseInt(tokens[7]));
+
+                    String correctChoice = String.valueOf((tokens[tokens.length-1]));
+
                     MultipleChoiceQuestion mcq = new MultipleChoiceQuestion(questionPrompt, questionTopic, correctChoice, String.valueOf(wrongAnswerList));
+
                     quiz.addQuestion(mcq);
                 } else if (questionType.equalsIgnoreCase("srq")) {
                     String patternString = tokens[3];
@@ -670,6 +674,7 @@ public class IO {
                 e.printStackTrace();
             }
         }
+        System.out.println("New Quiz imported named : "+ quiz.getQuizName());
         return quiz;
     }
 
