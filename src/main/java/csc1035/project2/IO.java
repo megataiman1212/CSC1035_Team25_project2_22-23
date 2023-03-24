@@ -222,6 +222,8 @@ public class IO {
             System.out.println("No quiz named \"" + quizName + "\" found.");
         }
 
+        // @todo NEEDS toString!
+
         return quiz;
     }
 
@@ -568,7 +570,7 @@ public class IO {
             System.out.println("Data entered not an int");
         }
         switch (importOrExportChoice){
-            case 1-> importQuestions();
+            //case 1-> importQuestions();
             case 2 -> exportQuestions();
             default -> {
                 System.out.println("=====================");
@@ -600,8 +602,10 @@ public class IO {
         Optional<Quiz> quiz = readQuiz();
         if (quiz.isEmpty()){return;}
 
+        //File file = new File("Question");
         PrintWriter writer = null;
         try {
+
             writer = new PrintWriter("Question");
             for (Question question : quiz.get().questions) {
                 if (question instanceof MultipleChoiceQuestion) {
@@ -636,6 +640,7 @@ public class IO {
  * Static method to import a list of questions from a hardcoded file
  * Mirrors exportQuestions
  */
+    /*
     public static List<Question> importQuestions(){
         List<Question> questionList = new ArrayList<>();
         String splitCsvBy;
@@ -662,6 +667,7 @@ public class IO {
 
         return questionList;
     }
+     */
 
     // =================================================================
     // =================================================================
@@ -835,9 +841,10 @@ public class IO {
         System.out.println("Select question topic you would like to display");
         System.out.println("----------------");
         System.out.println("    PROGRAMMING,\n" +
-                "    DATABASES,\n" +
-                "    ARCHITECTURE,\n" +
-                "    MATHS");
+                "    Databases,\n" +
+                "    Architecture,\n" +
+                "    Maths,\n" +
+                "    All");
 
         String topic = scanner.nextLine().trim().toLowerCase();
 
@@ -863,7 +870,7 @@ public class IO {
 
         Set<Question> questions = questionManager.getQuestions();
         for (Question question : questions){
-            if (question.getTopic().name().equals(topic)){
+            if (Objects.equals(question.getTopic().toString().toLowerCase(), topic.toLowerCase())){
                 switch (type) {
                     case "all" -> outputList.add(question);
                     case "mcq" -> {
